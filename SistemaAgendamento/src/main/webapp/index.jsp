@@ -14,14 +14,13 @@
 	    <form name="teste" action="login.jsp" method="POST">
 	        <fieldset>
 	            <legend><fmt:message key="project"/></legend>
-	            <legend><fmt:message key="wellcome"/></legend>
+	            <legend><fmt:message key="welcome"/></legend>
 	            <div>
 		            <div>
 			            <p><fmt:message key="user"/></p> <input type="text"  name="user" /> 
-			            <p><fmt:message key="pwd"/></p> <input type="password" name="password" /> 
-			            
+			            <p><fmt:message key="pass"/></p> <input type="password" name="password" /> 
 					</div>
-			            <input type="submit" name="login" value=<fmt:message key="login"/> />
+			        <input type="submit" name="login" value=<fmt:message key="login"/> />
 				</div>
 	        </fieldset>
 	    </form>
