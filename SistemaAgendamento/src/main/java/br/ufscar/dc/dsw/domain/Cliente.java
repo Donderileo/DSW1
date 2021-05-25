@@ -2,10 +2,10 @@ package br.ufscar.dc.dsw.domain;
 
 public class Cliente {
 
+	private String cpf;
 	private String nome;
 	private String email;
 	private String senha;
-	private String cpf;
 	private String telefone;
 	private String sexo;
 	private String dataNasc;
