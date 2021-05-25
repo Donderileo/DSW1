@@ -24,9 +24,9 @@ public class ClienteDAO extends GenericDAO {
             statement.setString(2, usuario.getEmail());
             statement.setString(3, usuario.getSenha());
             statement.setString(4, usuario.getCpf());
-            statement.setString(3, usuario.getTelefone());
-            statement.setString(4, usuario.getSexo());
-            statement.setString(3, usuario.getDataNasc());
+            statement.setString(5, usuario.getTelefone());
+            statement.setString(6, usuario.getSexo());
+            statement.setString(7, usuario.getDataNasc());
             statement.executeUpdate();
 
             statement.close();
@@ -142,7 +142,7 @@ public class ClienteDAO extends GenericDAO {
         return cliente;
     }
     
-    public Cliente getbyEmail(String email) {
+    public Cliente getByEmail(String email) {
         Cliente cliente = null;
 
         String sql = "SELECT * from Cliente WHERE email = ?";

@@ -7,7 +7,7 @@ create table Cliente(
     email varchar(256) not null unique,
     senha varchar(256) not null,
     telefone varchar(13) not null,
-    nome varchar(256) not null,
+    sexo varchar(256) not null,
     dataNasc date not null,
 
     primary key (cpf)
