@@ -23,7 +23,7 @@
 		<legend><fmt:message key="welcome"/></legend>
 			
 		<fieldset>
-			<form name="teste" action="/<%= contextPath%>/clientes/insere" method="POST">
+			<form name="cadastro" action="/<%= contextPath%>/clientes/insere" method="POST">
 				<div>
 					<div>
 						<p>CPF</p> 							

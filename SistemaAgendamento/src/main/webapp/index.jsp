@@ -14,7 +14,7 @@
 	
 		<legend><fmt:message key="project"/></legend>
 		<legend><fmt:message key="welcome"/></legend>
-		<a href="login.jsp">
+		<a href="login">
 			<fmt:message key="login"/>
 		</a>
 		<a href="clientes/cadastro">

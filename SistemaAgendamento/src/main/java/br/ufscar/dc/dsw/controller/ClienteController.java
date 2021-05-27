@@ -44,9 +44,7 @@ public class ClienteController extends HttpServlet {
             	case "/insere":
             		insereCliente(request, response);
             		break;
-                default:
-                    paginaCadastro(request, response);
-                    break;
+  
             }
         } catch (RuntimeException | IOException | ServletException e) {
             throw new ServletException(e);
@@ -72,8 +70,10 @@ public class ClienteController extends HttpServlet {
         Cliente cliente = new Cliente(cpf,nome,email,senha,telefone,sexo,dataNasc);
         dao.insert(cliente);
         
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
-		dispatcher.forward(request, response);
+       
+        
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
+        dispatcher.forward(request,response);
 	}
 
    

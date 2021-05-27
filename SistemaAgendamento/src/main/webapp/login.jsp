@@ -34,7 +34,7 @@
 		<legend><fmt:message key="welcome"/></legend>
 			
 		<fieldset>
-			<form name="teste" action="login" method="POST">
+			<form name="teste" action="/<%= contextPath%>/login" method="POST">
 				<div>
 					<div>
 						<p><fmt:message key="user"/></p> <input type="text"  name="email" /> 

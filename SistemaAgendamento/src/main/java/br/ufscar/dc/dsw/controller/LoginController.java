@@ -63,6 +63,8 @@ public class LoginController extends HttpServlet {
 
 		request.setAttribute("mensagens", erros);
 
+		
+		
 		String URL = "/login.jsp";
 		RequestDispatcher rd = request.getRequestDispatcher(URL);
 		rd.forward(request, response);
