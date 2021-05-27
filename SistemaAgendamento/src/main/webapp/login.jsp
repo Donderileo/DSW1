@@ -33,14 +33,29 @@
 		<legend><fmt:message key="project"/></legend>
 		<legend><fmt:message key="welcome"/></legend>
 			
+			
 		<fieldset>
+			<p>Cliente</p>
 			<form name="teste" action="/<%= contextPath%>/login" method="POST">
 				<div>
 					<div>
 						<p><fmt:message key="user"/></p> <input type="text"  name="email" /> 
 						<p><fmt:message key="pass"/></p> <input type="password" name="senha" /> 
 					</div>
-					<input type="submit" name="login" value=<fmt:message key="login"/> />
+					<input type="submit" name="loginCliente" value=<fmt:message key="login"/> />
+				</div>
+			</form>
+		</fieldset>
+		
+		<fieldset>
+			<p>Profissional</p>
+			<form name="teste" action="/<%= contextPath%>/login" method="POST">
+				<div>
+					<div>
+						<p><fmt:message key="user"/></p> <input type="text"  name="email" /> 
+						<p><fmt:message key="pass"/></p> <input type="password" name="senha" /> 
+					</div>
+					<input type="submit" name="loginProfissional" value=<fmt:message key="login"/> />
 				</div>
 			</form>
 		</fieldset>

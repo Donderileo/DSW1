@@ -139,7 +139,7 @@ public class ProfissionalDAO extends GenericDAO {
         return profissional;
     }
 
-     public Profissional getbyEmail(String email) {
+     public Profissional getByEmail(String email) {
         Profissional profissional = null;
         String sql = "SELECT * from Profissional WHERE email = ?";
         try {

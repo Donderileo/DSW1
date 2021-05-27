@@ -7,7 +7,7 @@
 <html>
 
 <head>
-    <title>Cadastro Cliente</title>
+    <title>Cadastro Profissional</title>
     <meta charset="UTF-8">
 </head>
 
@@ -23,29 +23,27 @@
 		<legend><fmt:message key="welcome"/></legend>
 			
 		<fieldset>
-			<form name="cadastro" action="/<%= contextPath%>/clientes/insere" method="POST">
+			<form name="cadastro" action="/<%= contextPath%>/profissionais/insere" method="POST">
 				<div>
 					<div>
 						<p>CPF</p> 							
 						<input type="text"  name="cpf" /> 
 						
 						<p><fmt:message key="name"/></p>	
-						<input type="text" name="nome" /> 
+						<input type="text" name="nome"/> 
                         
                         <p>email</p> 						
                         <input type="text"  name="email" /> 
                         
                         <p><fmt:message key="pass"/></p>		
-                        <input type="password"  name="senha" /> 
+                        <input type="password"  name="senha"/> 
                         
-                        <p><fmt:message key="tel"/></p> 		
-                        <input type="text"  name="telefone" /> 
+                        <p><fmt:message key="espec"/></p> 		
+                        <input type="text"  name="especialidade"/> 
                         
-                        <p><fmt:message key="gender"/></p> 		
-                        <input type="text"  name="sexo" /> 
+                        <p><fmt:message key="resume"/></p> 		
+                        <input type="text"  name="curriculo" /> 
                         
-                        <p><fmt:message key="birthDate"/></p> 	
-                        <input type="date"  name="dataNasc" /> 
                      
 					</div>
 					<input type="submit" name="register" value=<fmt:message key="register"/> />
