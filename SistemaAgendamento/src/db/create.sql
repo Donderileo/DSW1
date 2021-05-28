@@ -33,3 +33,12 @@ create table Consulta(
     foreign key (cpfProfissional) references Profissional(cpf),
     primary key (cpfCliente, cpfProfissional, data)
 );
+
+create table Admin(
+    nome varchar(256) not null unique,
+    email varchar(256) not null unique,
+    senha varchar(256) not null,
+    papel varchar(256) not null,
+    
+	primary key (nome)
+);
