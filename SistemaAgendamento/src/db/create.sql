@@ -44,3 +44,5 @@ create table Admin(
 );
 
 insert into Admin(nome, email, senha, papel) values ('admin', 'admin', 'admin', 'admin');
+
+SET GLOBAL time_zone = '-3:00';

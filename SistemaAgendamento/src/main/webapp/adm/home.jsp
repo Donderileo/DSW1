@@ -16,10 +16,18 @@
 
 
 	<fmt:bundle basename="messages">
-	
+		
 		<legend><fmt:message key="project"/></legend>
 		<legend><fmt:message key="welcome"/></legend>
 		<p>${sessionScope.adminLogado.nome}</p>
+				
+		<a href="admin/listaCliente">
+			Lista clientes
+		</a>
+		<a href="admin/listaProfissional">
+			Lista Profissionais
+		</a>
+		
 			
 		
 
