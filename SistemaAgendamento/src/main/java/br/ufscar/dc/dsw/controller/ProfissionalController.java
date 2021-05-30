@@ -37,7 +37,6 @@ public class ProfissionalController extends HttpServlet {
             action = "";
         }
        
-
         try {
             switch (action) {
             	case "/cadastro":
@@ -105,8 +104,8 @@ public class ProfissionalController extends HttpServlet {
     private void atualizar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
         request.setCharacterEncoding("UTF-8");
-
         String cpf = request.getParameter("cpf");
+        
         Profissional profissional = dao.getByCpf(cpf);
 
         String nome = request.getParameter("nome");
