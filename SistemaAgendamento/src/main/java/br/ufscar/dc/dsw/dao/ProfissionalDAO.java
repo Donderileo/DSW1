@@ -87,7 +87,7 @@ public class ProfissionalDAO extends GenericDAO {
 
     public void update(Profissional profissional){
         String sql = "UPDATE Profissional SET nome = ?, email = ?, senha = ?, especialidade = ?, curriculo = ? WHERE cpf = ?";
-
+        
         try{
             Connection conn = this.getConnection();
             PreparedStatement statement = conn.prepareStatement(sql);
