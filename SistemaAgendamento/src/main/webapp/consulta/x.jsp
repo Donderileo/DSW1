@@ -17,14 +17,17 @@
 		String contextPath = request.getContextPath().replace("/", "");
 	%>
 
-		<p> <%= contextPath %>  </p>
 	<fmt:bundle basename="messages">
-		<legend><fmt:message key="project"/></legend>
-		<legend><fmt:message key="welcome"/></legend>
-		<p>${sessionScope.clienteLogado.nome}</p>
-		
-		<a href="/<%= contextPath%>/consultas/agendar">Agende uma consulta</a>
-			
+		<c:if test="${mensagens.existeErros}">
+            <div id="erro">
+                <ul>
+                    <c:forEach var="erro" items="${mensagens.erros}">
+                        <li> ${erro} </li>
+                    </c:forEach>
+                </ul>
+            </div>
+        </c:if>
+		<p>Sim, nao funcionou</p>
 		
 
     </fmt:bundle>

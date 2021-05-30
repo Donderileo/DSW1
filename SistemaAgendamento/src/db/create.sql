@@ -25,13 +25,13 @@ create table Profissional(
 );
 
 create table Consulta(
-    cpfCliente varchar(11) not null,
-    cpfProfissional varchar(14) not null,
+	cpfCliente varchar(11) not null,
+	cpfProfissional varchar(14) not null,
 	data datetime not null,
     
 	foreign key (cpfCliente) references Cliente(cpf),
-    foreign key (cpfProfissional) references Profissional(cpf),
-    primary key (cpfCliente, cpfProfissional, data)
+    	foreign key (cpfProfissional) references Profissional(cpf),
+ 	primary key (cpfCliente, cpfProfissional, data)
 );
 
 create table Admin(
@@ -42,3 +42,5 @@ create table Admin(
     
 	primary key (nome)
 );
+
+insert into Admin(nome, email, senha, papel) values ('admin', 'admin', 'admin', 'admin');

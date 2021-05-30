@@ -25,6 +25,14 @@ public class Cliente {
 		this.sexo = sexo;
 		this.dataNasc = dataNasc;
 	}
+	
+	public String getCpf() {
+		return cpf;
+	}
+	
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
 
 	public String getNome() {
 		return nome;
@@ -50,13 +58,6 @@ public class Cliente {
 		this.senha = senha;
 	}
 
-	public String getCpf() {
-		return cpf;
-	}
-
-	public void setCpf(String cpf) {
-		this.cpf = cpf;
-	}
 	
 	public String getSexo() {
 		return sexo;
