@@ -12,7 +12,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import java.io.IOException;
+
 import java.sql.Timestamp;
+
 import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -70,16 +72,17 @@ public class ConsultaController extends HttpServlet {
     }
 	private void agendar(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Cliente clienteLogado = (Cliente) request.getSession().getAttribute("clienteLogado");
+
 		String prof = request.getPathInfo();
 		request.setAttribute("prof", prof);
 		Erro erros = new Erro();
 		if (clienteLogado == null) {
-			erros.add("Precisa estar logado para acessar essa página.");
-	        request.setAttribute("mensagens", erros);
-	        String URL = "/login.jsp";
-	        RequestDispatcher rd = request.getRequestDispatcher(URL);
-		    rd.forward(request, response);
-	        return;
+		  erros.add("Precisa estar logado para acessar essa página.");
+      request.setAttribute("mensagens", erros);
+      String URL = "/login.jsp";
+      RequestDispatcher rd = request.getRequestDispatcher(URL);
+      rd.forward(request, response);
+      return;
 		}
 		
 		List<Profissional> listaProfissionais = daoProfissional.getAll();
@@ -109,22 +112,27 @@ private void insereConsulta(HttpServletRequest request, HttpServletResponse resp
         String dataInput = request.getParameter("data");
         String horario = request.getParameter("horario");
         
+
 //        erros.add(cpfProfissional);
 //        erros.add(dataInput);
 //        erros.add(horario);
        
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
         Date data = dateFormat.parse(dataInput + " " + horario + ":00");
+
+        erros.add(cpfProfissional);
+        erros.add(dataInput);
+        erros.add(horario);
         
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
+        Date data = dateFormat.parse(dataInput + " " + horario + ":00");
         
+        erros.add(data.toString());
+
         String cpfCliente = clienteLogado.getCpf();
         
         Consulta consulta = new Consulta(cpfCliente, cpfProfissional , data);
-        
 
- //       erros.add(tms.toString());
-        
-//        Consulta verificaExistente = dao.get(cpfCliente, cpfProfissional, data);
         boolean existe = dao.getByDate(consulta);
        
         if (!existe) {
@@ -135,6 +143,16 @@ private void insereConsulta(HttpServletRequest request, HttpServletResponse resp
     		
     		request.setAttribute("mensagens", erros);
             String URL = "/consultas/x";
+
+		Consulta verificaExistente = dao.get(cpfCliente, cpfProfissional, data);
+       
+        if (verificaExistente == null) {
+        	dao.insert(consulta);
+        } else {
+        	erros.add("O horário escolhido já está ocupado.");
+    		
+    		request.setAttribute("mensagens", erros);
+            String URL = "/consultas/agendar";
             RequestDispatcher rd = request.getRequestDispatcher(URL);
 		    rd.forward(request, response);
             return;

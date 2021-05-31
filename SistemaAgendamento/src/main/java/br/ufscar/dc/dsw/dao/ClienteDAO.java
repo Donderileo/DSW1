@@ -5,13 +5,14 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import br.ufscar.dc.dsw.domain.Cliente;
 
 public class ClienteDAO extends GenericDAO {
 
-    public void insert(Cliente usuario) {
+    public void insert(Cliente cliente) {
 
         String sql = "INSERT INTO Cliente (nome, email, senha, cpf, telefone, sexo, dataNasc) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
@@ -20,13 +21,14 @@ public class ClienteDAO extends GenericDAO {
             PreparedStatement statement = conn.prepareStatement(sql);;
 
             statement = conn.prepareStatement(sql);
-            statement.setString(1, usuario.getNome());
-            statement.setString(2, usuario.getEmail());
-            statement.setString(3, usuario.getSenha());
-            statement.setString(4, usuario.getCpf());
-            statement.setString(5, usuario.getTelefone());
-            statement.setString(6, usuario.getSexo());
-            statement.setString(7, usuario.getDataNasc());
+            statement.setString(1, cliente.getNome());
+            statement.setString(2, cliente.getEmail());
+            statement.setString(3, cliente.getSenha());
+            statement.setString(4, cliente.getCpf());
+            statement.setString(5, cliente.getTelefone());
+            statement.setString(6, cliente.getSexo());
+            //statement.setString(7, cliente.getDataNasc());
+            statement.setDate(7, java.sql.Date.valueOf(cliente.getDataNasc()));
             statement.executeUpdate();
 
             statement.close();
@@ -56,7 +58,8 @@ public class ClienteDAO extends GenericDAO {
                 String senha = resultSet.getString("senha");
                 String telefone = resultSet.getString("telefone");
                 String sexo = resultSet.getString("sexo");
-                String dataNasc = resultSet.getString("dataNasc");
+                //String dataNasc = resultSet.getString("dataNasc");
+                LocalDate dataNasc = LocalDate.parse(resultSet.getDate("dataNasc").toString());
          
                 Cliente cliente = new Cliente(cpf, nome, email, senha, telefone, sexo, dataNasc);
                 
@@ -100,7 +103,8 @@ public class ClienteDAO extends GenericDAO {
             statement.setString(3, cliente.getSenha());
             statement.setString(4, cliente.getTelefone());
             statement.setString(5, cliente.getSexo());
-            statement.setString(6, cliente.getDataNasc());
+            //statement.setString(6, cliente.getDataNasc());
+            statement.setDate(6, java.sql.Date.valueOf(cliente.getDataNasc()));
             statement.setString(7, cliente.getCpf());
             statement.executeUpdate();
 
@@ -128,7 +132,8 @@ public class ClienteDAO extends GenericDAO {
                 String senha = resultSet.getString("senha");
                 String telefone = resultSet.getString("telefone");
                 String sexo = resultSet.getString("sexo");
-                String dataNasc = resultSet.getString("dataNasc");
+                //String dataNasc = resultSet.getString("dataNasc");
+                LocalDate dataNasc = LocalDate.parse(resultSet.getDate("dataNasc").toString());
 
                 cliente = new Cliente(cpf, nome, email, senha, telefone, sexo, dataNasc);
             }
@@ -160,7 +165,8 @@ public class ClienteDAO extends GenericDAO {
 	            String cpf = resultSet.getString("cpf");
 	            String telefone = resultSet.getString("telefone");
 	            String sexo = resultSet.getString("sexo");
-	            String dataNasc = resultSet.getString("dataNasc");
+	            //String dataNasc = resultSet.getString("dataNasc");
+	            LocalDate dataNasc = LocalDate.parse(resultSet.getDate("dataNasc").toString());
 
                  cliente = new Cliente(cpf, nome, email, senha, telefone, sexo, dataNasc);
             }

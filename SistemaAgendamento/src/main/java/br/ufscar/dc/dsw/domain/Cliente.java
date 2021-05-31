@@ -1,5 +1,7 @@
 package br.ufscar.dc.dsw.domain;
 
+import java.time.LocalDate;
+
 public class Cliente {
 
 	private String cpf;
@@ -8,14 +10,14 @@ public class Cliente {
 	private String senha;
 	private String telefone;
 	private String sexo;
-	private String dataNasc;
+	private LocalDate dataNasc;
 	
 
 	public Cliente(String cpf) {
 		this.cpf = cpf;
 	}
 
-	public Cliente(String cpf, String nome, String email, String senha, String telefone, String sexo, String dataNasc) {
+	public Cliente(String cpf, String nome, String email, String senha, String telefone, String sexo, LocalDate dataNasc) {
 		
 		this.cpf = cpf;
 		this.nome = nome;
@@ -75,11 +77,11 @@ public class Cliente {
 		this.telefone = telefone;
 	}
 	
-	public String getDataNasc() {
+	public LocalDate getDataNasc() {
 		return dataNasc;
 	}
 
-	public void setDataNasc(String dataNasc) {
+	public void setDataNasc(LocalDate dataNasc) {
 		this.dataNasc = dataNasc;
 	}
 }

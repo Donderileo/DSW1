@@ -142,6 +142,7 @@ public class ConsultaDAO extends GenericDAO {
         return listaConsulta;
     }
     
+
     public boolean getByDate(Consulta consultaIn) {
     	List<Consulta> listaConsulta = new ArrayList<>();
     	String sql = "SELECT * from Consulta where data = ?";
