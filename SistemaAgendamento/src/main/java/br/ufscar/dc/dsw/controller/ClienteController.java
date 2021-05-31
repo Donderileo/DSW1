@@ -45,15 +45,15 @@ public class ClienteController extends HttpServlet {
             	case "/insere":
             		insereCliente(request, response);
             		break;
-                case "/remover":
-                    removeCliente(request, response);
-                    break;
-                case "/editar":
-                    paginaEdicao(request, response);
-                    break;	
-                case "/atualizar":
-                    atualizar(request, response);
-                    break;	
+              case "/remover":
+                  removeCliente(request, response);
+                  break;
+              case "/editar":
+                  paginaEdicao(request, response);
+                  break;	
+              case "/atualizar":
+                  atualizar(request, response);
+                  break;	
             }
         } catch (RuntimeException | IOException | ServletException e) {
             throw new ServletException(e);

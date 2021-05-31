@@ -109,6 +109,7 @@ public class ConsultaDAO extends GenericDAO {
         }
         return listaConsulta;
     }
+    
 
     public List<Consulta> getByCpfProfissional(String cpfProfissional) {
         List<Consulta> listaConsulta = new ArrayList<>();
@@ -140,6 +141,52 @@ public class ConsultaDAO extends GenericDAO {
         }
         return listaConsulta;
     }
+    
+
+    public boolean getByDate(Consulta consultaIn) {
+    	List<Consulta> listaConsulta = new ArrayList<>();
+    	String sql = "SELECT * from Consulta where data = ?";
+    	
+	   try {
+		  
+	       // Conectando no banco e realizando consulta
+		   Connection conn = this.getConnection();
+		   PreparedStatement statement = conn.prepareStatement(sql);
+		   Timestamp tms = new Timestamp(consultaIn.getData().getTime());
+		   statement.setString(1, tms.toString());
+	
+		   ResultSet resultSet = statement.executeQuery();
+	
+		   // Convertendo resultados para a classe interna Consulta
+		   while (resultSet.next()) {
+		       String cpfProfissional = resultSet.getString("cpfProfissional");
+		       String cpfCliente = resultSet.getString("cpfCliente");
+		       Date data_sql = resultSet.getDate("data");
+		  
+
+               Consulta consultaAux = new Consulta(cpfCliente, cpfProfissional, data_sql);
+               listaConsulta.add(consultaAux);
+	           }
+   	
+	           for(Consulta consulta: listaConsulta) {
+	        	   if((consulta.getCpfCliente().equals(consultaIn.getCpfCliente())) || (consulta.getCpfProfissional().equals(consultaIn.getCpfProfissional()))) {
+	        		   return true;
+	        	   }
+	           }
+	           
+	           resultSet.close();
+	           statement.close();
+	           conn.close();
+	           
+	           return false;
+	           
+	         
+	       } catch (SQLException e) {
+	           throw new RuntimeException(e);
+	       }
+		   
+	       
+	   }
     
     public void insert(Consulta consulta){
         String sql = "INSERT INTO Consulta (cpfCliente, cpfProfissional, data) VALUES (?, ?, ?)";

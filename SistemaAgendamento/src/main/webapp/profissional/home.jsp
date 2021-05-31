@@ -20,7 +20,10 @@
 		<legend><fmt:message key="project"/></legend>
 		<legend><fmt:message key="welcome"/></legend>
 		<p>${sessionScope.profissionalLogado.nome}</p>
-			
+		
+		<c:forEach var="consulta" items="${sessionScope.listaConsulta}">
+			<p>${consulta.cliente.nome} - ${consulta.data}</p>
+		</c:forEach>
 		
 
     </fmt:bundle>

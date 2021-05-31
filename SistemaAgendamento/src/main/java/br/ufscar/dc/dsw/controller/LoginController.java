@@ -6,7 +6,18 @@ import br.ufscar.dc.dsw.domain.Cliente;
 import br.ufscar.dc.dsw.dao.ProfissionalDAO;
 import br.ufscar.dc.dsw.domain.Profissional;
 
+import br.ufscar.dc.dsw.dao.ConsultaDAO;
+import br.ufscar.dc.dsw.domain.Consulta;
+
+import br.ufscar.dc.dsw.domain.ConsultaClient;
+
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -22,11 +33,13 @@ public class LoginController extends HttpServlet {
     private static final long serialVersionUID = 1L; 
     private ClienteDAO daoCli;
     private ProfissionalDAO daoPro;
+    private ConsultaDAO daoCon;
     
     @Override
     public void init() {
         daoCli = new ClienteDAO();
         daoPro = new ProfissionalDAO();
+        daoCon = new ConsultaDAO();
     }
 
     @Override
@@ -52,7 +65,22 @@ public class LoginController extends HttpServlet {
 				
 				if (cliente != null) {
 					if (cliente.getSenha().equals(senha)) {
+						
+						List<Consulta> listaConsulta = daoCon.getByCpfCliente(cliente.getCpf());
+						List<ConsultaClient> listaConsultaClient = new ArrayList<ConsultaClient>();
+						
+						Profissional profissional;
+						
+						for(Consulta consulta: listaConsulta) {
+							profissional = daoPro.getByCpf(consulta.getCpfProfissional());
+							Timestamp tms = new Timestamp(consulta.getData().getTime());
+							listaConsultaClient.add(new ConsultaClient(cliente, profissional, tms));
+				        }
+						
+						
+						request.getSession().setAttribute("listaConsulta", listaConsultaClient);
 						request.getSession().setAttribute("clienteLogado", cliente);
+						
 						RequestDispatcher dispatcher = request.getRequestDispatcher("/cliente/home.jsp");
 						dispatcher.forward(request, response);
 						return;
@@ -74,11 +102,25 @@ public class LoginController extends HttpServlet {
 				erros.add("Senha não informada!");
 			}
 			if (!erros.isExisteErros()) {
-				ProfissionalDAO dao = new ProfissionalDAO();
-				Profissional profissional = dao.getByEmail(email);
+				
+				Profissional profissional = daoPro.getByEmail(email);
 				
 				if (profissional != null) {
 					if (profissional.getSenha().equals(senha)) {
+						
+						List<Consulta> listaConsulta = daoCon.getByCpfProfissional(profissional.getCpf());
+						List<ConsultaClient> listaConsultaClient = new ArrayList<ConsultaClient>();
+						
+						Cliente cliente;
+						
+						for(Consulta consulta: listaConsulta) {
+							cliente = daoCli.getByCpf(consulta.getCpfCliente());
+							Timestamp tms = new Timestamp(consulta.getData().getTime());
+							listaConsultaClient.add(new ConsultaClient(cliente, profissional, tms));
+				        }
+						
+						
+						request.getSession().setAttribute("listaConsulta", listaConsultaClient);
 						request.getSession().setAttribute("profissionalLogado", profissional);
 						RequestDispatcher dispatcher = request.getRequestDispatcher("/profissional/home.jsp");
 						dispatcher.forward(request, response);
