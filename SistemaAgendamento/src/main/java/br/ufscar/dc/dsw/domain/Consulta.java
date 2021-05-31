@@ -1,15 +1,15 @@
 package br.ufscar.dc.dsw.domain;
-
+import java.util.Date;
 
 public class Consulta {
     private String cpfCliente;
     private String cpfProfissional; 
-    private String data;
+    private Date data;
 
-    public Consulta(String cpfCliente, String cpfProfissional, String data) {
-        this.setCpfCliente(cpfCliente);
-        this.setCpfProfissional(cpfProfissional);
-        this.setData(data);
+    public Consulta(String cpfCliente, String cpfProfissional, Date data) {
+        this.cpfCliente = cpfCliente;
+        this.cpfProfissional = cpfProfissional;
+        this.data = data;
     }
 
     public void setCpfCliente(String cpfCliente) { this.cpfCliente = cpfCliente; }
@@ -18,7 +18,7 @@ public class Consulta {
     public void setCpfProfissional(String cpfProfissional) { this.cpfProfissional = cpfProfissional; }
     public String getCpfProfissional() { return this.cpfProfissional; }
 
-    public void setData(String data) { this.data = data; }
-    public String getData() { return this.data; }
+    public void setData(Date data) { this.data = data; }
+    public Date getData() { return this.data; }
 
 }

@@ -158,7 +158,8 @@ public class ProfissionalDAO extends GenericDAO {
             resultSet.close();
             statement.close();
             conn.close();
-        } catch (SQLException e) {
+        } 
+        catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return profissional;

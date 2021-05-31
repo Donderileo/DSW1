@@ -25,8 +25,12 @@
 		
 		<a href="/<%= contextPath%>/consultas/agendar">Agende uma consulta</a>
 		
-		<c:forEach var="consulta" items="${sessionScope.listaConsulta}">
-			<p>${consulta.profissional.nome} - ${consulta.data}</p>
+		<c:forEach var="profissional" items="${sessionScope.listaProfissionais}">
+			<a href="/<%= contextPath%>/consultas/agendar">
+			<div>			
+				${profissional.nome} - ${profissional.especialidade}
+			</div>
+			</a>
 		</c:forEach>
 			
 		

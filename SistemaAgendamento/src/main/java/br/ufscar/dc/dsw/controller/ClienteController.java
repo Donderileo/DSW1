@@ -35,7 +35,6 @@ public class ClienteController extends HttpServlet {
             action = "";
         }
        
-
         try {
             switch (action) {
             	case "/cadastro":
@@ -44,7 +43,7 @@ public class ClienteController extends HttpServlet {
             	case "/insere":
             		insereCliente(request, response);
             		break;
-  
+            	
             }
         } catch (RuntimeException | IOException | ServletException e) {
             throw new ServletException(e);
