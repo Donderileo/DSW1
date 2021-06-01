@@ -18,6 +18,7 @@
 		String contextPath = request.getContextPath().replace("/", "");
 	%>
 
+
 	<fmt:bundle basename="messages">
 		<div class="nav">
 			<h1>
@@ -33,11 +34,15 @@
 			</h2>
 			<a class="btn" href="/<%= contextPath%>/profissional/home.jsp">Home</a>		
 		</div>
+
+
+
 		
+		<c:forEach var="consulta" items="${sessionScope.listaConsulta}">
+			<p>${consulta.cliente.nome} - ${consulta.data}</p>
+		</c:forEach>			
 		
-			<a href="/<%= contextPath%>/profissionais/listarConsultas">Suas consultas</a>
-		
-		
+
     </fmt:bundle>
 </body>
 

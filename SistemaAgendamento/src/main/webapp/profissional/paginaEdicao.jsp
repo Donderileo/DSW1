@@ -27,22 +27,22 @@
 					<fieldset>
 						<legend> EDICAO DE PROFISSIONAIS </legend>
 						
-						CPF </br>
+						CPF <br/>
 						<input type="text" name="cpf" value="${profissional.cpf}" readonly/> <br/>
 						
-						NOME </br>
+						NOME <br/>
 						<input type="text" name="nome" value="${profissional.nome}"/> <br/>
 						
-						EMAIL </br>
+						EMAIL <br/>
 						<input type="email" name="email" value="${profissional.email}"/> <br/>
 						
-						SENHA </br>
+						SENHA <br/>
 						<input type="password" name="senha" value="${profissional.senha}"/> <br/>
 						
-						ESPECIALIDADE </br>
+						ESPECIALIDADE <br/>
 						<input type="text" name="especialidade" value="${profissional.especialidade}"/> <br/>
 						
-						CURRICULO </br>
+						CURRICULO <br/>
 						<input type="text" name="curriculo" value="${profissional.curriculo}"/> <br/>
 
 						<input type="submit" name="enviar" value="atualizar" />

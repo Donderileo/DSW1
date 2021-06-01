@@ -76,16 +76,25 @@ public class ClienteDAO extends GenericDAO {
     }
 
     public void delete(Cliente cliente) {
-        String sql = "DELETE FROM Cliente where cpf = ?";
-
+        String predelete = "DELETE FROM Consulta where cpfCliente = ?";
+    	String sql = "DELETE FROM Cliente where cpf = ?";
+        
         try {
             Connection conn = this.getConnection();
-            PreparedStatement statement = conn.prepareStatement(sql);
+            PreparedStatement statement = conn.prepareStatement(predelete);
 
             statement.setString(1, cliente.getCpf());
             statement.executeUpdate();
-
             statement.close();
+            
+            
+            statement = conn.prepareStatement(sql);
+
+            statement.setString(1, cliente.getCpf());
+            statement.executeUpdate();
+            statement.close();
+            
+            
             conn.close();
         } catch (SQLException e) {
         }

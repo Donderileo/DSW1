@@ -69,20 +69,28 @@ public class ProfissionalDAO extends GenericDAO {
     }
 
     public void delete(Profissional profissional){
-        String sql = "Delete FROM Profissional where cpf = ?";
+    	String predelete = "DELETE FROM Consulta where cpfProfissional = ?";
+     	String sql = "DELETE FROM Profissional where cpf = ?";
+         
+         try {
+             Connection conn = this.getConnection();
+             PreparedStatement statement = conn.prepareStatement(predelete);
 
-        try{
-            Connection conn = this.getConnection();
-            PreparedStatement statement = conn.prepareStatement(sql);
+             statement.setString(1, profissional.getCpf());
+             statement.executeUpdate();
+             statement.close();
+             
+             
+             statement = conn.prepareStatement(sql);
 
-            statement.setString(1, profissional.getCpf());
-            statement.executeUpdate();
-
-            statement.close();
-            conn.close();
-        } catch (SQLException e) {
-            throw new RuntimeException(e);
-        }
+             statement.setString(1, profissional.getCpf());
+             statement.executeUpdate();
+             statement.close();
+             
+             
+             conn.close();
+         } catch (SQLException e) {
+         }
     }
 
     public void update(Profissional profissional){

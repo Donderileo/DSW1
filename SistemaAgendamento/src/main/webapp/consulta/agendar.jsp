@@ -9,6 +9,7 @@
 <head>
     <title>Home</title>
     <meta charset="UTF-8">
+    <link href="${pageContext.request.contextPath}/styles.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
@@ -19,11 +20,23 @@
 
 	<fmt:bundle basename="messages">
 	
-		<legend><fmt:message key="project"/></legend>
-		<legend><fmt:message key="welcome"/></legend>
-		<p>${sessionScope.clienteLogado.nome}</p>
+		<div class="nav">
+			<h1>
+				<fmt:message key="project"/>			
+			</h1>
+			
+		</div>
+		
+		<div class="extremos">
+			<h2>
+				<fmt:message key="welcome"/>
+				${clienteLogado.nome}
+			</h2>
+			<a class="btn" href="/<%= contextPath%>/cliente/home.jsp">Home</a>		
+		</div>
 		
 		<form action="/<%= contextPath%>/consultas/insere" method="post">
+		
 					<fieldset>		
 						<select name="profissional">
 							<c:forEach var="profissional" items="${requestScope.listaProfissionais}">
@@ -34,7 +47,7 @@
 						<br/>
 							
 						<label for="data">
-							<fmt:message key=""/>:
+							<fmt:message key="date"/>:
 						</label> 
 						
 						<br/>
@@ -44,7 +57,7 @@
   						<br/>
   						
   						<label for="horario">
-							<fmt:message key=""/>:
+							<fmt:message key="schedule"/>:
 						</label> 
 						
 						<br/>

@@ -13,7 +13,9 @@
 
 <body>
 
-
+	<%
+		String contextPath = request.getContextPath().replace("/", "");
+	%>
 
 	<fmt:bundle basename="messages">
 		
@@ -21,10 +23,10 @@
 		<legend><fmt:message key="welcome"/></legend>
 		<p>${sessionScope.adminLogado.nome}</p>
 				
-		<a href="admin/listaCliente">
+		<a href="/<%= contextPath%>/admin/listaCliente">
 			Lista clientes
 		</a>
-		<a href="admin/listaProfissional">
+		<a href="/<%= contextPath%>/admin/listaProfissional">
 			Lista Profissionais
 		</a>
 		

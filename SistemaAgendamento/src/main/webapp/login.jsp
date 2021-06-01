@@ -9,6 +9,10 @@
 <head>
     <title>Login</title>
     <meta charset="UTF-8">
+     <link href="styles.css" rel="stylesheet" type="text/css"/>
+     <link href="${pageContext.request.contextPath}/styles.css" rel="stylesheet" type="text/css"/>
+      <script src="script.js"></script>
+      <script src="${pageContext.request.contextPath}/script.js"></script>
 </head>
 
 <body>
@@ -20,6 +24,33 @@
 
 	<fmt:bundle basename="messages">
 		
+		
+		
+	
+		<div class="nav">
+			<h1>
+				<fmt:message key="project"/>			
+			</h1>
+			
+		</div>
+		
+		<div class="extremos">
+			<h2>
+				<fmt:message key="welcome"/>
+			</h2>
+			<a>
+				<div id="btn" class="btn" onClick="doToggle()">
+					
+					<div class="none" id="pro">
+						Alterar login para Cliente
+					</div >
+					<div id="cli">
+						Alterar login para Profissional
+					</div>
+				</div>	
+			</a>	
+		</div>
+		
 		<c:if test="${mensagens.existeErros}">
             <div id="erro">
                 <ul>
@@ -30,11 +61,7 @@
             </div>
         </c:if>
 		
-		<legend><fmt:message key="project"/></legend>
-		<legend><fmt:message key="welcome"/></legend>
-			
-			
-		<fieldset>
+		<fieldset id="logCli">
 			<p>Cliente</p>
 			<form name="teste" action="/<%= contextPath%>/login" method="POST">
 				<div>
@@ -47,7 +74,7 @@
 			</form>
 		</fieldset>
 		
-		<fieldset>
+		<fieldset class = "none" id="logPro">
 			<p>Profissional</p>
 			<form name="teste" action="/<%= contextPath%>/login" method="POST">
 				<div>

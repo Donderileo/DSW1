@@ -27,25 +27,25 @@
 					<fieldset>
 						<legend> EDICAO DE CLIENTES </legend>
 						
-						CPF </br>
+						CPF <br/>
 						<input type="text" name="cpf" value="${cliente.cpf}" readonly/> <br/>
 						
-						NOME </br>
+						NOME <br/>
 						<input type="text" name="nome" value="${cliente.nome}"/> <br/>
 						
-						EMAIL </br>
+						EMAIL <br/>
 						<input type="email" name="email" value="${cliente.email}"/> <br/>
 						
-						SENHA </br>
+						SENHA <br/>
 						<input type="password" name="senha" value="${cliente.senha}"/> <br/>
 						
-						SEXO </br>
+						SEXO <br/>
 						<input type="text" name="sexo" value="${cliente.sexo}"/> <br/>
 						
-						TELEFONE </br>
+						TELEFONE <br/>
 						<input type="text" name="telefone" value="${cliente.telefone}"/> <br/>
 						
-						DATA DE NASC </br>
+						DATA DE NASC <br/>
 						<input type="text" name="dataNasc" value="${cliente.dataNasc}"/> <br/>
 
 						<input type="submit" name="enviar" value="atualizar" />

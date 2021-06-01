@@ -78,11 +78,11 @@ public class ConsultaController extends HttpServlet {
 		Erro erros = new Erro();
 		if (clienteLogado == null) {
 		  erros.add("Precisa estar logado para acessar essa página.");
-      request.setAttribute("mensagens", erros);
-      String URL = "/login.jsp";
-      RequestDispatcher rd = request.getRequestDispatcher(URL);
-      rd.forward(request, response);
-      return;
+	      request.setAttribute("mensagens", erros);
+	      String URL = "/login.jsp";
+	      RequestDispatcher rd = request.getRequestDispatcher(URL);
+	      rd.forward(request, response);
+	      return;
 		}
 		
 		List<Profissional> listaProfissionais = daoProfissional.getAll();
@@ -111,19 +111,8 @@ private void insereConsulta(HttpServletRequest request, HttpServletResponse resp
         String cpfProfissional = request.getParameter("profissional");
         String dataInput = request.getParameter("data");
         String horario = request.getParameter("horario");
-        
 
-//        erros.add(cpfProfissional);
-//        erros.add(dataInput);
-//        erros.add(horario);
-       
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
-        Date data = dateFormat.parse(dataInput + " " + horario + ":00");
 
-        erros.add(cpfProfissional);
-        erros.add(dataInput);
-        erros.add(horario);
-        
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
         Date data = dateFormat.parse(dataInput + " " + horario + ":00");
         
@@ -144,20 +133,22 @@ private void insereConsulta(HttpServletRequest request, HttpServletResponse resp
     		request.setAttribute("mensagens", erros);
             String URL = "/consultas/x";
 
-		Consulta verificaExistente = dao.get(cpfCliente, cpfProfissional, data);
+            Consulta verificaExistente = dao.get(cpfCliente, cpfProfissional, data);
        
-        if (verificaExistente == null) {
-        	dao.insert(consulta);
-        } else {
-        	erros.add("O horário escolhido já está ocupado.");
-    		
-    		request.setAttribute("mensagens", erros);
-            String URL = "/consultas/agendar";
-            RequestDispatcher rd = request.getRequestDispatcher(URL);
-		    rd.forward(request, response);
-            return;
-     }
-	} catch (Exception e) {
+	        if (verificaExistente == null) {
+	        	dao.insert(consulta);
+	        } else {
+	        	erros.add("O horário escolhido já está ocupado.");
+	    		
+	    		request.setAttribute("mensagens", erros);
+	            URL = "/consultas/agendar";
+	            RequestDispatcher rd = request.getRequestDispatcher(URL);
+			    rd.forward(request, response);
+	            return;
+	        }
+        } 
+	}
+	catch (Exception e) {
 		System.out.print(e.toString());
 		
 		erros.add("Erro nos dados preenchidos.");
@@ -172,9 +163,7 @@ private void insereConsulta(HttpServletRequest request, HttpServletResponse resp
 	String URL = "/cliente/home.jsp"; 
 	RequestDispatcher rd = request.getRequestDispatcher(URL);
 	rd.forward(request, response);
-}
-	
-	
 
    
+	}
 }

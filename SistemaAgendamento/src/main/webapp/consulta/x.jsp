@@ -9,6 +9,7 @@
 <head>
     <title>Home</title>
     <meta charset="UTF-8">
+    <link href="${pageContext.request.contextPath}/styles.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
@@ -18,6 +19,18 @@
 	%>
 
 	<fmt:bundle basename="messages">
+		<div class="nav">
+			<fmt:message key="project"/>
+		
+			<fmt:message key="welcome"/>
+			
+				${profissionalLogado.nome}
+				${clienteLogado.nome}
+				
+				<a href="/<%= contextPath%>/profissional/home.jsp">Home</a>			
+						
+		</div>
+		
 		<c:if test="${mensagens.existeErros}">
             <div id="erro">
                 <ul>
@@ -27,7 +40,8 @@
                 </ul>
             </div>
         </c:if>
-		<p>Sim, nao funcionou</p>
+        
+        <a><fmt:message key="backToLogin"/></a>
 		
 
     </fmt:bundle>

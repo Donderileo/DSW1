@@ -1,11 +1,19 @@
 package br.ufscar.dc.dsw.controller;
 
 import br.ufscar.dc.dsw.dao.ClienteDAO;
+import br.ufscar.dc.dsw.dao.ConsultaDAO;
+import br.ufscar.dc.dsw.dao.ProfissionalDAO;
 import br.ufscar.dc.dsw.domain.Cliente;
+import br.ufscar.dc.dsw.domain.Consulta;
+import br.ufscar.dc.dsw.domain.ConsultaClient;
+import br.ufscar.dc.dsw.domain.Profissional;
 import br.ufscar.dc.dsw.util.Erro;
 
 import java.io.IOException;
+import java.sql.Timestamp;
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -19,10 +27,15 @@ public class ClienteController extends HttpServlet {
 
     private static final long serialVersionUID = 1L; 
     private ClienteDAO dao;
+    private ConsultaDAO daoCon;
+    private ProfissionalDAO daoPro;
+    
 
     @Override
     public void init() {
         dao = new ClienteDAO();
+        daoCon = new ConsultaDAO();  
+        daoPro = new ProfissionalDAO();
     }
 
     @Override
@@ -53,6 +66,9 @@ public class ClienteController extends HttpServlet {
                   break;	
               case "/atualizar":
                   atualizar(request, response);
+                  break;
+              case "/listarConsultas":
+            	  listarConsultas(request, response);
                   break;	
             }
         } catch (RuntimeException | IOException | ServletException e) {
@@ -60,6 +76,41 @@ public class ClienteController extends HttpServlet {
         }
         
     }
+    private void listarConsultas(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    	
+    	Erro erros = new Erro();
+    	
+    	try {
+	    	
+    			Cliente cliente = (Cliente) request.getSession().getAttribute("clienteLogado");
+		    	List<Consulta> listaConsulta = daoCon.getByCpfCliente(cliente.getCpf());
+				List<ConsultaClient> listaConsultaClient = new ArrayList<ConsultaClient>();
+				
+				Profissional profissional;
+				
+				for(Consulta consulta: listaConsulta) {
+					profissional = daoPro.getByCpf(consulta.getCpfProfissional());
+					Timestamp tms = new Timestamp(consulta.getData().getTime());
+					listaConsultaClient.add(new ConsultaClient(cliente, profissional, tms));
+		        }
+				
+				
+				request.getSession().setAttribute("listaConsulta", listaConsultaClient);
+				
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/cliente/listarConsultas.jsp");
+				dispatcher.forward(request, response);
+	    	
+    	}
+    	catch (Exception e) {
+    		System.out.print(e.toString());
+    		erros.add("Você precisa estar logado para acessar essa página");
+    		request.setAttribute("mensagens", erros);
+            String URL = "/consultas/x";
+            RequestDispatcher rd = request.getRequestDispatcher(URL);
+    	    rd.forward(request, response);
+            return;
+    	}
+	}
 	private void paginaCadastro(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/cliente/paginaCadastro.jsp");
 		dispatcher.forward(request, response);
@@ -88,9 +139,10 @@ public class ClienteController extends HttpServlet {
         String cpf = request.getParameter("cpf");
         Cliente cliente = dao.getByCpf(cpf);
         dao.delete(cliente);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/adm/home.jsp");
         dispatcher.forward(request, response);
     }
+    
 	    
     private void paginaEdicao(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.setCharacterEncoding("UTF-8");
@@ -141,13 +193,14 @@ public class ClienteController extends HttpServlet {
         Cliente clienteNew = new Cliente(cpf, nome, email, senha, telefone, sexo, dataNasc);
         try {
             dao.update(clienteNew);
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/adm/home.jsp");
+            dispatcher.forward(request, response);
         } catch (Exception e) {
             RequestDispatcher rd = request.getRequestDispatcher("/cliente/paginaEdicao.jsp");
             rd.forward(request, response);
         }
 
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/admin");
-        dispatcher.forward(request, response);
+       
     }
     
 }

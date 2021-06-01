@@ -9,6 +9,8 @@
 <head>
     <title>Home</title>
     <meta charset="UTF-8">
+    <link href="${pageContext.request.contextPath}/styles.css" rel="stylesheet" type="text/css"/>
+    <link href="/styles.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
@@ -19,19 +21,33 @@
 
 	
 	<fmt:bundle basename="messages">
-		<legend><fmt:message key="project"/></legend>
-		<legend><fmt:message key="welcome"/></legend>
-		<p>${sessionScope.clienteLogado.nome}</p>
 		
-		<a href="/<%= contextPath%>/consultas/agendar">Agende uma consulta</a>
+	<div class="nav">
+			<h1>
+				<fmt:message key="project"/>			
+			</h1>
+			
+		</div>
 		
-		<c:forEach var="profissional" items="${sessionScope.listaProfissionais}">
-			<a href="/<%= contextPath%>/consultas/agendar">
-			<div>			
-				${profissional.nome} - ${profissional.especialidade}
-			</div>
-			</a>
-		</c:forEach>
+		<div class="extremos">
+			<h2>
+				<fmt:message key="welcome"/>
+				${clienteLogado.nome}
+			</h2>
+			<a class="btn" href="/<%= contextPath%>/cliente/home.jsp">Home</a>		
+		</div>
+
+
+		<div class="recuo">
+			<p>Clique em um profissional para agendar sua consulta.</p>
+			<c:forEach var="profissional" items="${sessionScope.listaProfissionais}">
+				<a href="/<%= contextPath%>/consultas/agendar">
+					
+					${profissional.nome} - ${profissional.especialidade}
+				
+				</a>
+			</c:forEach>
+		</div>
 			
 		
 
