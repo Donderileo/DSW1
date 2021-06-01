@@ -1,6 +1,9 @@
 package br.ufscar.dc.dsw.dao;
 
+import java.io.File;
+import java.io.UnsupportedEncodingException;
 
+import javax.mail.internet.InternetAddress;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -11,8 +14,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Date;
 
-
+import br.ufscar.dc.dsw.EmailService;
+import br.ufscar.dc.dsw.domain.Cliente;
 import br.ufscar.dc.dsw.domain.Consulta;
+import br.ufscar.dc.dsw.domain.Profissional;
 
 
 public class ConsultaDAO extends GenericDAO {
@@ -188,9 +193,11 @@ public class ConsultaDAO extends GenericDAO {
 	       
 	   }
     
-    public void insert(Consulta consulta){
+    public void insert(Consulta consulta) throws UnsupportedEncodingException{
         String sql = "INSERT INTO Consulta (cpfCliente, cpfProfissional, data) VALUES (?, ?, ?)";
-
+        
+        ClienteDAO daoCli = new ClienteDAO();
+		ProfissionalDAO daoPro = new ProfissionalDAO();
 
         try{
             Connection conn = this.getConnection();
@@ -203,6 +210,25 @@ public class ConsultaDAO extends GenericDAO {
             statement.setString(1, consulta.getCpfCliente());
             statement.setString(2, consulta.getCpfProfissional());
             statement.setTimestamp(3, data);
+            
+            EmailService service = new EmailService();
+            
+            Cliente cliente = daoCli.getByCpf(consulta.getCpfCliente());
+
+            Profissional profissional = daoPro.getByCpf(consulta.getCpfProfissional());
+    		
+    		InternetAddress from = new InternetAddress("agendamentodonaderi@gmail.com", "Fulano");
+    		InternetAddress toCliente = new InternetAddress(cliente.getEmail(), cliente.getNome());
+    		InternetAddress toProfissional = new InternetAddress(profissional.getEmail(), profissional.getNome());
+    		
+    		String dataString = consulta.getData().toString();
+    		String subject = "Consulta Marcada!";
+    		String body = "Consulta marcada na data " + dataString + " "
+    					+ "Cliente: " + cliente.getNome() + " "
+    					+ "Profissional: " + profissional.getNome();
+
+    		service.send(from, toCliente, subject, body);
+    		service.send(from, toProfissional, subject, body);
             statement.executeUpdate();
             
             statement.close();

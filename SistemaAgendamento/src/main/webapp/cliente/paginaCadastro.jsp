@@ -9,6 +9,7 @@
 <head>
     <title>Cadastro Cliente</title>
     <meta charset="UTF-8">
+    <link href="${pageContext.request.contextPath}/styles.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
@@ -19,8 +20,20 @@
 
 	<fmt:bundle basename="messages">
 	
-		<legend><fmt:message key="project"/></legend>
-		<legend><fmt:message key="welcome"/></legend>
+		<div class="nav">
+			<h1>
+				<fmt:message key="project"/>			
+			</h1>
+			
+		</div>
+		
+		<div class="extremos">
+			<h2>
+				<fmt:message key="welcome"/>
+				${clienteLogado.nome}
+			</h2>
+			<a class="btn" href="/<%= contextPath%>/login.jsp"><fmt:message key="jaConta"/></a>		
+		</div>
 			
 		<fieldset>
 			<form name="cadastro" action="/<%= contextPath%>/clientes/insere" method="POST">
@@ -32,17 +45,19 @@
 						<p><fmt:message key="name"/></p>	
 						<input type="text" name="nome" /> 
                         
-                        <p>email</p> 						
-                        <input type="text"  name="email" /> 
+                        <p>Email</p> 						
+                        <input type="email"  name="email" /> 
                         
                         <p><fmt:message key="pass"/></p>		
                         <input type="password"  name="senha" /> 
                         
                         <p><fmt:message key="tel"/></p> 		
-                        <input type="text"  name="telefone" /> 
+                        <input type="text" name="telefone" /> 
                         
                         <p><fmt:message key="gender"/></p> 		
-                        <input type="text"  name="sexo" /> 
+                        <input type="radio" name="sexo" value="male"> Male<br>
+					  	<input type="radio" name="sexo" value="female"> Female<br>
+					  	<input type="radio" name="sexo" value="other"> Other
                         
                         <p><fmt:message key="birthDate"/></p> 	
                         <input type="date"  name="dataNasc" /> 

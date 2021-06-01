@@ -42,10 +42,10 @@
 				<div id="btn" class="btn" onClick="doToggle()">
 					
 					<div class="none" id="pro">
-						Alterar login para Cliente
+						<fmt:message key="AlterarCliente"/>
 					</div >
 					<div id="cli">
-						Alterar login para Profissional
+						<fmt:message key="AlterarProf"/>
 					</div>
 				</div>	
 			</a>	
@@ -62,7 +62,7 @@
         </c:if>
 		
 		<fieldset id="logCli">
-			<p>Cliente</p>
+			<p><fmt:message key="cliente"/></p>
 			<form name="teste" action="/<%= contextPath%>/login" method="POST">
 				<div>
 					<div>
@@ -72,10 +72,11 @@
 					<input type="submit" name="loginCliente" value=<fmt:message key="login"/> />
 				</div>
 			</form>
+			<a href="/<%= contextPath%>/"><fmt:message key="createAccount"/></a>
 		</fieldset>
 		
 		<fieldset class = "none" id="logPro">
-			<p>Profissional</p>
+			<p><fmt:message key="profissional"/></p>
 			<form name="teste" action="/<%= contextPath%>/login" method="POST">
 				<div>
 					<div>
@@ -85,6 +86,7 @@
 					<input type="submit" name="loginProfissional" value=<fmt:message key="login"/> />
 				</div>
 			</form>
+			<a href="/<%= contextPath%>/"><fmt:message key="createAccount"/></a>
 		</fieldset>
 
     </fmt:bundle>

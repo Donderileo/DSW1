@@ -37,9 +37,9 @@
 		
 		
 		<div class="btn-home">
-			<a class="btn" href="/<%= contextPath%>/consultas/agendar">Agende uma consulta</a>
-			<a class="btn" href="/<%= contextPath%>/clientes/listarConsultas">Suas consultas</a>
-			<a class="btn" href="/<%= contextPath%>/lista">Lista de Profissionais</a>
+			<a class="btn" href="/<%= contextPath%>/consultas/agendar"><fmt:message key="agendeConsulta"/></a>
+			<a class="btn" href="/<%= contextPath%>/clientes/listarConsultas"><fmt:message key="suasConsultas"/></a>
+			<a class="btn" href="/<%= contextPath%>/lista"><fmt:message key="listaPro"/></a>
 		</div>
 		
 		

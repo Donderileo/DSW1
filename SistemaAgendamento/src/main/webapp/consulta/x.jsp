@@ -41,7 +41,7 @@
             </div>
         </c:if>
         
-        <a><fmt:message key="backToLogin"/></a>
+        <a href="/<%= contextPath%>/"><fmt:message key="backToLogin"/></a>
 		
 
     </fmt:bundle>

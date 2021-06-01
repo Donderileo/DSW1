@@ -37,7 +37,12 @@
 		
 		<form action="/<%= contextPath%>/consultas/insere" method="post">
 		
-					<fieldset>		
+					<fieldset>
+					<label for="profissional">
+							<fmt:message key="profissional"/>:
+					</label>	
+					<br/>
+						
 						<select name="profissional">
 							<c:forEach var="profissional" items="${requestScope.listaProfissionais}">
 								<option value="${profissional.cpf}">${profissional.nome}, ${profissional.especialidade}</option>

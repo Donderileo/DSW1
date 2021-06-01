@@ -9,6 +9,7 @@
 <head>
     <title>Cadastro Profissional</title>
     <meta charset="UTF-8">
+    <link href="${pageContext.request.contextPath}/styles.css" rel="stylesheet" type="text/css"/>
 </head>
 
 <body>
@@ -18,9 +19,20 @@
 	%>
 
 	<fmt:bundle basename="messages">
-	
-		<legend><fmt:message key="project"/></legend>
-		<legend><fmt:message key="welcome"/></legend>
+	<div class="nav">
+			<h1>
+				<fmt:message key="project"/>			
+			</h1>
+			
+		</div>
+		
+		<div class="extremos">
+			<h2>
+				<fmt:message key="welcome"/>
+				${clienteLogado.nome}
+			</h2>
+			<a class="btn" href="/<%= contextPath%>/login.jsp"><fmt:message key="jaConta"/></a>		
+		</div>
 			
 		<fieldset>
 			<form name="cadastro" action="/<%= contextPath%>/profissionais/insere" method="POST">
@@ -32,8 +44,8 @@
 						<p><fmt:message key="name"/></p>	
 						<input type="text" name="nome"/> 
                         
-                        <p>email</p> 						
-                        <input type="text"  name="email" /> 
+                        <p>Email</p> 						
+                        <input type="email"  name="email" /> 
                         
                         <p><fmt:message key="pass"/></p>		
                         <input type="password"  name="senha"/> 
@@ -44,7 +56,7 @@
                         <p><fmt:message key="resume"/></p> 		
                         <input type="text"  name="curriculo" /> 
                         
-                     
+                     	
 					</div>
 					<input type="submit" name="register" value=<fmt:message key="register"/> />
 				</div>

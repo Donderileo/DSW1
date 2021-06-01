@@ -19,24 +19,27 @@
 	%>
 
 	<fmt:bundle basename="messages">
+
 		<div class="nav">
 			<h1>
 				<fmt:message key="project"/>			
 			</h1>
-			
 		</div>
+		<a class="btn" href="/<%= contextPath%>/login.jsp"><fmt:message key="Retornar"/></a>
 		
-		<div class="extremos">
-			<h2>
-				<fmt:message key="welcome"/>
-				${profissionalLogado.nome}
-			</h2>
-			<a class="btn" href="/<%= contextPath%>/profissional/home.jsp">Home</a>		
-		</div>
+		<c:if test="${mensagens.existeErros}">
+            <div id="erro">
+                <ul>
+                    <c:forEach var="erro" items="${mensagens.erros}">
+                        <li> ${erro} </li>
+                    </c:forEach>
+                </ul>
+            </div>
+        </c:if>
+        
+        <a href="/<%= contextPath%>/"><fmt:message key="backToLogin"/></a>
 		
-			<a class="btn" href="/<%= contextPath%>/profissionais/listarConsultas"><fmt:message key="suasConsultas"/></a>
-		
-		
+
     </fmt:bundle>
 </body>
 

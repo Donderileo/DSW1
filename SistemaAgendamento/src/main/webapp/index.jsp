@@ -50,7 +50,7 @@
 				
 				<a href="lista">
 					<div class="btn">
-						<fmt:message key="regProfissional"/>
+						<fmt:message key="listaPro"/>
 					</div>
 				</a>
 			</div>

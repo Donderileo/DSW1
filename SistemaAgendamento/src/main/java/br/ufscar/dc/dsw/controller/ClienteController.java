@@ -117,6 +117,7 @@ public class ClienteController extends HttpServlet {
 	}
 	
 	private void insereCliente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Erro erros = new Erro();
 		
 		request.setCharacterEncoding("UTF-8");
         String cpf = request.getParameter("cpf");
@@ -129,10 +130,19 @@ public class ClienteController extends HttpServlet {
         LocalDate dataNasc = LocalDate.parse(request.getParameter("dataNasc"));
 		
         Cliente cliente = new Cliente(cpf,nome,email,senha,telefone,sexo,dataNasc);
-        dao.insert(cliente);
-        
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
-        dispatcher.forward(request,response);
+        try {
+        	dao.insert(cliente);
+        	RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
+        	dispatcher.forward(request,response);        
+        }
+        catch(Exception e) {
+        	erros.add("Informações em uso");
+    		request.setAttribute("mensagens", erros);
+            String URL = "/erros.jsp";
+            RequestDispatcher rd = request.getRequestDispatcher(URL);
+    	    rd.forward(request, response);
+            return;
+        }
 	}
 	
     private void removeCliente(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

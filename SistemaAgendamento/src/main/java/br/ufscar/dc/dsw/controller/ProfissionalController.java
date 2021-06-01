@@ -9,18 +9,27 @@ import br.ufscar.dc.dsw.domain.ConsultaClient;
 import br.ufscar.dc.dsw.domain.Profissional;
 import br.ufscar.dc.dsw.util.Erro;
 
+import java.io.File;
 import java.io.IOException;
-import java.sql.Timestamp;
-import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
+
+import static br.ufscar.dc.dsw.domain.Constants.*;
+
+
+import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import javax.servlet.RequestDispatcher;
 
 @WebServlet(urlPatterns = "/profissionais/*")
 public class ProfissionalController extends HttpServlet {
@@ -119,6 +128,7 @@ public class ProfissionalController extends HttpServlet {
 	}
 	
 	private void insereProfissional(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		Erro erros = new Erro();
 		
 		request.setCharacterEncoding("UTF-8");
         String cpf = request.getParameter("cpf");
@@ -128,16 +138,27 @@ public class ProfissionalController extends HttpServlet {
         String especialidade = request.getParameter("especialidade");
         String curriculo = request.getParameter("curriculo");
         
+        
+        
         Profissional profissional = new Profissional(cpf,nome,email,senha,especialidade,curriculo);
-        dao.insert(profissional);
+        try {
+	        dao.insert(profissional);
+	        RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
+	        dispatcher.forward(request,response);
+        }
+        catch(Exception e) {
+        	erros.add("Informações em uso");
+    		request.setAttribute("mensagens", erros);
+            String URL = "/erros.jsp";
+            RequestDispatcher rd = request.getRequestDispatcher(URL);
+    	    rd.forward(request, response);
+            return;
+        }
         
-       
-        
-        RequestDispatcher dispatcher = request.getRequestDispatcher("/login.jsp");
-        dispatcher.forward(request,response);
 	}
 
-    private void removeProfissional(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+
+	private void removeProfissional(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String cpf = request.getParameter("cpf");
         Profissional profissional = dao.getByCpf(cpf);
         dao.delete(profissional);
@@ -195,5 +216,5 @@ public class ProfissionalController extends HttpServlet {
         
     }
 	
-   
+
 }

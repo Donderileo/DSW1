@@ -11,6 +11,7 @@
     <meta charset="UTF-8">
     <link href="${pageContext.request.contextPath}/styles.css" rel="stylesheet" type="text/css"/>
     <link href="/styles.css" rel="stylesheet" type="text/css"/>
+    <script src="ajaxNome.js"></script>
 </head>
 
 <body>
@@ -39,12 +40,11 @@
 
 
 		<div class="recuo">
-			<p>Clique em um profissional para agendar sua consulta.</p>
+			<p><fmt:message key="CliqueEm"/>.</p>
 			<c:forEach var="profissional" items="${sessionScope.listaProfissionais}">
 				<a href="/<%= contextPath%>/consultas/agendar">
-					
 					${profissional.nome} - ${profissional.especialidade}
-				
+					<br/>
 				</a>
 			</c:forEach>
 		</div>
