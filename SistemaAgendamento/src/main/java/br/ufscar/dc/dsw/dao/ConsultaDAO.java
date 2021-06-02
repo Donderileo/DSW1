@@ -148,7 +148,7 @@ public class ConsultaDAO extends GenericDAO {
     }
     
 
-    public boolean getByDate(Consulta consultaIn) {
+    public List<Consulta> getByDate(Consulta consultaIn) {
     	List<Consulta> listaConsulta = new ArrayList<>();
     	String sql = "SELECT * from Consulta where data = ?";
     	
@@ -171,19 +171,14 @@ public class ConsultaDAO extends GenericDAO {
 
                Consulta consultaAux = new Consulta(cpfCliente, cpfProfissional, data_sql);
                listaConsulta.add(consultaAux);
-	           }
+	       }
    	
-	           for(Consulta consulta: listaConsulta) {
-	        	   if((consulta.getCpfCliente().equals(consultaIn.getCpfCliente())) || (consulta.getCpfProfissional().equals(consultaIn.getCpfProfissional()))) {
-	        		   return true;
-	        	   }
-	           }
 	           
 	           resultSet.close();
 	           statement.close();
 	           conn.close();
 	           
-	           return false;
+	           return listaConsulta;
 	           
 	         
 	       } catch (SQLException e) {

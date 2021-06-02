@@ -20,15 +20,17 @@
 
 	<fmt:bundle basename="messages">
 		<div class="nav">
-			<fmt:message key="project"/>
-		
-			<fmt:message key="welcome"/>
+			<h1>
+				<fmt:message key="project"/>			
+			</h1>
 			
-				${profissionalLogado.nome}
-				${clienteLogado.nome}
-				
-				<a href="/<%= contextPath%>/profissional/home.jsp">Home</a>			
-						
+		</div>
+		
+		<div class="extremos">
+			<h2>
+				<a href="/<%= contextPath%>/"><fmt:message key="Retonar"/></a>
+			</h2>
+			<a class="btn" href="/<%= contextPath%>/cliente/home.jsp">Home</a>		
 		</div>
 		
 		<c:if test="${mensagens.existeErros}">

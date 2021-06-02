@@ -116,37 +116,36 @@ private void insereConsulta(HttpServletRequest request, HttpServletResponse resp
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm");
         Date data = dateFormat.parse(dataInput + " " + horario + ":00");
         
-        erros.add(data.toString());
+       
 
         String cpfCliente = clienteLogado.getCpf();
         
         Consulta consulta = new Consulta(cpfCliente, cpfProfissional , data);
 
-        boolean existe = dao.getByDate(consulta);
+       List<Consulta> listaConsulta =  dao.getByDate(consulta);
+       boolean existe = false;
+       
+       for(Consulta consultaX: listaConsulta) {
+    	   if(consultaX.getCpfCliente().equals(cpfCliente)){
+    		   existe = true;
+    		   
+    	   }
+           if(consultaX.getCpfProfissional().equals(cpfProfissional)){
+        	   existe = true;
+           }
+       }
        
         if (!existe) {
         	dao.insert(consulta);
         } else {
         	
         	erros.add("O horário escolhido já está ocupado por você ou pelo profissional.");
-    		
     		request.setAttribute("mensagens", erros);
             String URL = "/consultas/x";
-
-            Consulta verificaExistente = dao.get(cpfCliente, cpfProfissional, data);
-       
-	        if (verificaExistente == null) {
-	        	dao.insert(consulta);
-	        } else {
-	        	erros.add("O horário escolhido já está ocupado.");
-	    		
-	    		request.setAttribute("mensagens", erros);
-	            URL = "/consultas/agendar";
-	            RequestDispatcher rd = request.getRequestDispatcher(URL);
-			    rd.forward(request, response);
-	            return;
-	        }
-        } 
+            RequestDispatcher rd = request.getRequestDispatcher(URL);
+            rd.forward(request, response);
+            return;
+        }
 	}
 	catch (Exception e) {
 		System.out.print(e.toString());
