@@ -2,7 +2,7 @@
 
 O sistema de agendamento proposto, tem seus requisitos disponíveis em: 
 
-[Requisitos do Sistema](https://www.github.com/Donderileo/DSW1/SistemaAgendamento/Requisitos-C1.pdf)
+[Requisitos do Sistema](https://github.com/Donderileo/DSW1/blob/main/SistemaAgendamento/Requisitos-C1.pdf)
 
 
 ----
