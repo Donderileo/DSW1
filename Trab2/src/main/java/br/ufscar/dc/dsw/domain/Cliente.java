@@ -14,7 +14,18 @@ import br.ufscar.dc.dsw.domain.Usuario;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "Cliente")
+
 public class Cliente extends Usuario {
+
+	@NotBlank
+	@Size(min = 14, max = 14)
+	@Column(nullable = false, unique = true, length = 60)
+	private String CPF;
+	
+	@NotBlank
+	@Size(min = 3, max = 60)
+	@Column(nullable = false, unique = true, length = 60)
+	private String nome;
 
     @NotBlank
 	@Size(min = 11, max = 15)
@@ -31,8 +42,7 @@ public class Cliente extends Usuario {
 	@Column(nullable = false, unique = false, length = 60)
 	private String dataNasc;
 
-    
-    public String getTelefone() {
+  public String getTelefone() {
 		return telefone;
 	}
 
