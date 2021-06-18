@@ -8,25 +8,26 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+
 @Entity
-@Table(name = "Locacao")
-public class Consulta {
+@Table(name = "Consulta")
+public class Consulta extends AbstractEntity<Long>{
 
     @ManyToOne
     @JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 
     @ManyToOne
-    @JoinColumn(name = "locadora_id")
-	private Profissional locadora;
+    @JoinColumn(name = "profissional_id")
+	private Profissional profissional;
 
     @NotBlank
 	@Size(min = 8, max = 12)
 	@Column(nullable = false, unique = false, length = 60)
-	private String dataReserva;
+	private String dataConsulta;
     
 	@Column(nullable = false, unique = false)
-	private int horaReserva;
+	private int horaConsulta;
 	
     public Cliente getCliente() {
 		return cliente;
@@ -36,27 +37,27 @@ public class Consulta {
 		this.cliente = cliente;
 	}
 
-    public Profissional getLocadora() {
-		return locadora;
+    public Profissional getProfissional() {
+		return profissional;
 	}
 
-	public void setLocadora(Profissional locadora) {
-		this.locadora = locadora;
+	public void setProfissional(Profissional profissional) {
+		this.profissional = profissional;
 	}
 
-	public String getDataReserva() {
-		return dataReserva;
+	public String getDataConsulta() {
+		return dataConsulta;
 	}
 
-	public void setDataReserva(String dataReserva) {
-		this.dataReserva = dataReserva;
+	public void setDataConsulta(String dataConsulta) {
+		this.dataConsulta = dataConsulta;
 	}
 	
-	public int getHoraReserva() {
-		return horaReserva;
+	public int getHoraConsulta() {
+		return horaConsulta;
 	}
 
-	public void setHoraReserva(int horaReserva) {
-		this.horaReserva = horaReserva;
+	public void setHoraConsulta(int horaConsulta) {
+		this.horaConsulta = horaConsulta;
 	}
 }

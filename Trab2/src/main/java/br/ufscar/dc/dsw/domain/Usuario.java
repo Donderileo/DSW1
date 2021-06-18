@@ -30,7 +30,7 @@ public class Usuario extends AbstractEntity<Long> {
     
     @NotBlank
     @Column(nullable = false, length = 10)
-    private String role;
+    private String papel;
 	
 	public String getEmail() {
 		return email;
@@ -64,11 +64,11 @@ public class Usuario extends AbstractEntity<Long> {
 		this.CPF = cpf;
 	}
 
-	public String getRole() {
-		return role;
+	public String getPapel() {
+		return papel;
 	}
 	
-	public void setRole(String role) {
-		this.role = role;
+	public void setPapel(String papel) {
+		this.papel = papel;
 	}
 }

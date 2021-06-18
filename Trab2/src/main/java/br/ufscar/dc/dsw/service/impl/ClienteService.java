@@ -22,9 +22,14 @@ public class ClienteService implements IClienteService {
 		return dao.findAll();
 	}
 
+
 	@Transactional(readOnly = true)
 	public Cliente buscarPorId(long id) {
 		return dao.findById(id);
 	}
-	
+
+	@Transactional(readOnly = true)
+	public boolean clienteTemConsulta(Long id) {
+		return !dao.findById(id.longValue()).getConsultas().isEmpty(); 
+	}
 }

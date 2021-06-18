@@ -7,9 +7,10 @@ import org.springframework.data.repository.CrudRepository;
 import br.ufscar.dc.dsw.domain.Profissional;
 
 @SuppressWarnings("unchecked")
-public interface ProfissionalDAO extends CrudRepository<Profissional, Long>{
+public interface IProfissionalDAO extends CrudRepository<Profissional, Long>{
 
-	Profissional findByCPF(String CPF);
+	
+	Profissional findById(long id);
 
 	List<Profissional> findAll();
 

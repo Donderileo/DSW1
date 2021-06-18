@@ -17,18 +17,8 @@ import br.ufscar.dc.dsw.domain.Usuario;
 
 public class Cliente extends Usuario {
 
-	@NotBlank
-	@Size(min = 14, max = 14)
-	@Column(nullable = false, unique = true, length = 60)
-	private String CPF;
-	
-	@NotBlank
-	@Size(min = 3, max = 60)
-	@Column(nullable = false, unique = true, length = 60)
-	private String nome;
-
     @NotBlank
-	@Size(min = 11, max = 15)
+	@Size(min = 1, max = 15)
 	@Column(nullable = false, unique = false, length = 60)
 	private String telefone;
 
@@ -38,9 +28,12 @@ public class Cliente extends Usuario {
 	private String sexo;
 
     @NotBlank
-	@Size(min = 8, max = 10)
+	@Size(min = 1, max = 15)
 	@Column(nullable = false, unique = false, length = 60)
 	private String dataNasc;
+
+	@OneToMany(mappedBy = "cliente")
+	private List<Consulta> consultas;
 
   public String getTelefone() {
 		return telefone;
@@ -50,20 +43,27 @@ public class Cliente extends Usuario {
 		this.telefone = telefone;
 	}
 
-    public String getsexo() {
+    public String getSexo() {
 		return sexo;
 	}
 
-	public void setsexo(String sexo) {
+	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
 
-    public String getdataNasc() {
+    public String getDataNasc() {
 		return dataNasc;
 	}
 
-	public void setdataNasc(String dataNasc) {
+	public void setDataNasc(String dataNasc) {
 		this.dataNasc = dataNasc;
 	}
 
+	public List<Consulta> getConsultas() {
+		return consultas;
+	}
+
+	public void setConsultas(List<Consulta> consultas) {
+		this.consultas = consultas;
+	}
 }

@@ -9,12 +9,18 @@ import br.ufscar.dc.dsw.domain.Profissional;
 import br.ufscar.dc.dsw.domain.Consulta;
 
 @SuppressWarnings("unchecked")
-public interface ConsultaDAO extends CrudRepository<Consulta, Long>{
+public interface IConsultaDAO extends CrudRepository<Consulta, Long>{
 
+	Consulta findById(long id);
+	
 	List<Consulta> findAll();
 	
     List<Consulta> findByCliente(Cliente cliente);
 	
     List<Consulta> findByProfissional(Profissional profissional);
+    
+    Consulta save(Consulta consulta);
+
+	void deleteById(Long id);
 
 }

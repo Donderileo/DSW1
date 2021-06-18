@@ -12,17 +12,7 @@ import javax.validation.constraints.Size;
 @SuppressWarnings("serial")
 @Entity
 @Table(name = "Profissional")
-public class Profissional extends Pessoa {
-	
-	@NotBlank
-	@Size(min = 14, max = 14)
-	@Column(nullable = false, unique = true, length = 60)
-	private String CPF;
-	
-	@NotBlank
-	@Size(min = 3, max = 60)
-	@Column(nullable = false, unique = true, length = 60)
-	private String nome;
+public class Profissional extends Usuario {
 
     @NotBlank
 	@Size(min = 3, max = 60)
@@ -37,22 +27,6 @@ public class Profissional extends Pessoa {
 	@OneToMany(mappedBy = "profissional")
 	private List<Consulta> consultas;
 	
-	public String getCPF() {
-		return CPF;
-	}
-
-	public void setCPF(String CPF) {
-		this.CPF = CPF;
-	}
-	
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
     public String getEspecialidade() {
 		return especialidade;
 	}
