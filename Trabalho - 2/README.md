@@ -23,15 +23,6 @@ Com o servidor MySql ativo, é necessário alterar os valores de password e senh
 
 Atualizando as variáveis spring.datasource.username e spring.datasource.password com seu username e password iguais aos usados no MySql.
 
-```java
-protected Connection getConnection() throws SQLException {
-    
-    String url = "jdbc:mysql://localhost:3306/SistemaAgendamento";
-    
-    return DriverManager.getConnection(url, "root", "password");
-}
-```
-
 Com tudo configurado, precisamos inserir o Database no mySQL
 
     create database SistemaAgendamento
