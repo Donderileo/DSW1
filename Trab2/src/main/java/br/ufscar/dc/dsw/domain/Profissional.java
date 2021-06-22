@@ -14,12 +14,12 @@ import javax.validation.constraints.Size;
 @Table(name = "Profissional")
 public class Profissional extends Usuario {
 
-    @NotBlank
+    @NotBlank (message = "{NotBlank.profissional.especialidade}")
 	@Size(min = 3, max = 60)
 	@Column(nullable = false, unique = false, length = 60)
 	private String especialidade;
     
-    @NotBlank
+    @NotBlank (message = "{NotBlank.profissional.curriculo}")
 	@Size(min = 3, max = 60)
 	@Column(nullable = false, unique = false, length = 60)
 	private String curriculo;

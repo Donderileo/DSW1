@@ -28,6 +28,15 @@ public class Trab2Application {
 	public CommandLineRunner demo(IUsuarioDAO usuarioDAO, IProfissionalDAO profissionalDAO, IConsultaDAO consultaDAO, IClienteDAO clienteDAO, BCryptPasswordEncoder encoder) {
 		return (args) -> {
 		
+			Usuario user = new Usuario();
+			user.setEmail("admin@admin.com");
+			user.setPassword(encoder.encode("admin"));
+			user.setCPF("105");
+			user.setName("admin");
+			user.setPapel("Adm");
+			usuarioDAO.save(user);
+			
+			
 			Profissional profissional1 = new Profissional();
 			profissional1.setEmail("bruno@gmail.com");
 			profissional1.setPassword(encoder.encode("bruno"));
@@ -85,7 +94,7 @@ public class Trab2Application {
 			Consulta consulta1 = new Consulta();
 			consulta1.setCliente(cliente1);
 			consulta1.setProfissional(profissional1);
-			consulta1.setDataConsulta("21/05/2021");
+			consulta1.setDataConsulta("2021-05-21");
 			consulta1.setHoraConsulta(15);
 
 			log.info("Salvando Consulta1 1-1");
@@ -95,7 +104,7 @@ public class Trab2Application {
 			Consulta consulta2 = new Consulta();
 			consulta2.setCliente(cliente2);
 			consulta2.setProfissional(profissional2);
-			consulta2.setDataConsulta("22/05/2021");
+			consulta2.setDataConsulta("2021-05-21");
 			consulta2.setHoraConsulta(15);
 
 			log.info("Salvando Consulta2 2-2");
@@ -105,7 +114,7 @@ public class Trab2Application {
 			Consulta consulta3 = new Consulta();
 			consulta3.setCliente(cliente1);
 			consulta3.setProfissional(profissional2);
-			consulta3.setDataConsulta("22/05/2021");
+			consulta3.setDataConsulta("2021-05-22");
 			consulta3.setHoraConsulta(15);
 
 			log.info("Salvando Consulta3 1-2 - deve dar erro");

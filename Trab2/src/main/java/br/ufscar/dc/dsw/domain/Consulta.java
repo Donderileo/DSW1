@@ -13,7 +13,8 @@ import javax.validation.constraints.Size;
 @Table(name = "Consulta")
 public class Consulta extends AbstractEntity<Long>{
 
-    @ManyToOne
+
+	@ManyToOne
     @JoinColumn(name = "cliente_id")
 	private Cliente cliente;
 
@@ -22,13 +23,13 @@ public class Consulta extends AbstractEntity<Long>{
 	private Profissional profissional;
 
     @NotBlank
-	@Size(min = 8, max = 12)
-	@Column(nullable = false, unique = false, length = 60)
-	private String dataConsulta;
-    
-	@Column(nullable = false, unique = false)
-	private int horaConsulta;
-	
+		@Size(min = 8, max = 12)
+		@Column(nullable = false, unique = false, length = 60)
+		private String dataConsulta;
+	    
+		@Column(nullable = false, unique = false)
+		private int horaConsulta;
+		
     public Cliente getCliente() {
 		return cliente;
 	}

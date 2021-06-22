@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html layout:decorate="~{layout}">
+<head>
+<meta charset="UTF-8" />
+</head>
+<body>
+	<section class="layout-content" layout:fragment="corpo">
+
+		<nav class="navbar navbar-expand-md bg-light">
+			<div class="collapse navbar-collapse" id="navbarsExampleDefault">
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><i class="oi oi-caret-right"></i>
+						<span th:text="#{profissional.cadastrar.label}"></span></li>
+				</ul>
+				<a class="btn btn-primary btn-md" th:href="@{/profissionais/listar}"
+					role="button"> <span class="oi oi-spreadsheet" title="Listar"
+					aria-hidden="true"></span> <span th:text="#{profissional.listar.label}"></span>
+				</a>
+			</div>
+		</nav>
+
+		<div class="container" id="cadastro">
+
+			<div th:replace="fragments/alert"></div>
+
+			<form
+				th:action="${profissional.id == null} ? @{/profissionais/salvar} : @{/profissionais/editar}"
+				th:object="${profissional}" method="POST">
+				
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="name" th:text="#{profissional.name.label}"></label> 
+						<input type="text" class="form-control" id="name"
+							autofocus="autofocus" th:field="*{name}"
+							th:classappend="${#fields.hasErrors('name')} ? is-invalid" />
+
+						<div class="invalid-feedback">
+							<span th:errors="*{name}"></span>
+						</div> 
+					</div>
+
+					<div class="form-group col-md-6">
+						<label for="CPF" th:text="#{profissional.cpf.label}">CPF</label> 
+						<input type="text" class="form-control" id="CPF" placeholder="___.___.___-__"
+							autofocus="autofocus" th:field="*{CPF}"
+							th:classappend="${#fields.hasErrors('CPF')} ? is-invalid" 
+							data-mask="00.000.000-0" data-mask-reverse="true" />
+						                               
+						<div class="invalid-feedback">
+							<span th:errors="*{CPF}"></span>
+						</div>
+					</div>
+
+					<div class="form-group col-md-6">
+						<label for="email" th:text="#{profissional.email.label}">Email</label> 
+						<input type="email" class="form-control" id="email" placeholder="xxxx@email.com"
+							autofocus="autofocus" th:field="*{email}"
+							th:classappend="${#fields.hasErrors('email')} ? is-invalid"/>
+						                               
+						<div class="invalid-feedback">
+							<span th:errors="*{email}"></span>
+						</div>
+					</div>
+
+					<div class="form-group col-md-6">
+						<label for="password" th:text="#{profissional.senha.label}">Senha</label> 
+						<input type="password" class="form-control" id="password"
+							autofocus="autofocus" th:field="*{password}"
+							th:classappend="${#fields.hasErrors('password')} ? is-invalid"/>
+						                               
+						<div class="invalid-feedback">
+							<span th:errors="*{password}"></span>
+						</div>
+					</div>
+
+					<div class="form-group col-md-6">
+						<label for="especialidade" th:text="#{profissional.especialidade.label}">Especialidade</label> 
+						<input type="text" class="form-control" id="especialidade"
+							autofocus="autofocus" th:field="*{especialidade}"
+							th:classappend="${#fields.hasErrors('especialidade')} ? is-invalid"/>
+						                               
+						<div class="invalid-feedback">
+							<span th:errors="*{especialidade}"></span>
+						</div>
+					</div>
+					
+					<div class="form-group col-md-6">
+						<label for="curriculo" th:text="#{profissional.curriculo.label}">Curriculo</label> 
+						<input type="text" class="form-control" id="curriculo"
+							autofocus="autofocus" th:field="*{curriculo}"
+							th:classappend="${#fields.hasErrors('curriculo')} ? is-invalid"/>
+						                               
+						<div class="invalid-feedback">
+							<span th:errors="*{curriculo}"></span>
+						</div>
+					</div>
+				</div>
+
+				<input type="hidden" id="id" th:field="*{id}" />
+				<button type="submit" class="btn btn-primary btn-sm" th:text="#{button.salvar.label}">Salvar</button>
+			</form>
+		</div>
+	</section>
+</body>
+</html>
+
+

@@ -24,6 +24,12 @@ public class UsuarioDetails implements UserDetails {
         return Arrays.asList(authority);
     }
  
+    
+    public Long getId() {
+        return user.getId();
+    }
+ 
+    
     @Override
     public String getPassword() {
         return user.getPassword();

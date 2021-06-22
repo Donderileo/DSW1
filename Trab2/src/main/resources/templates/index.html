@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:th="http://www.thymeleaf.org"
-	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
-
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
 <head>
 <link th:href="@{/css/style.css}" rel="stylesheet" />
 
@@ -11,35 +11,41 @@
 
 <body>
 
-	<header th:replace="fragments/header :: header">
-		<div>header</div>
-	</header>
+<section class="layout-content" layout:fragment="corpo">
 
-	<div>
-		<h1 th:text="#{project.title}"></h1>
-		<span th:text="${#dates.format(date)}"></span>
-		
-		<div>
-			<a href="/login">Login!</a>
-		</div>
-		
-		<div>
-			<a href="/cadastro">Registrar!</a>
-		</div>
-		<div sec:authorize="hasRole('ROLE_CLIENTE')">
-			Consegue Cadastrar / Ver consultas / Ver profissionais
-		</div>
-		
-		<div sec:authorize="hasRole('ROLE_PROFISSIONAL')">
-			 Ver consultas / Ver profissionais
-		</div>
-		
-	</div>
+		<div class="container" style="text-align: center;">
+			<h1 th:text="#{title.label}">Donaderi Agendamentos</h1>
+			
+				<img alt="" th:src="@{/image/DonaderiAgendamentos_en.jpg}"  id="donaderi_en" class="donaderi none">
+				<img alt="" th:src="@{/image/DonaderiAgendamentos.jpg}"  id="donaderi_br" class="donaderi">
 
-	<footer th:replace="fragments/footer :: footer">
-		<div>footer</div>
-	</footer>
-	
+			
+			
+		</div>
+
+	</section>
+
 </body>
 
 </html>
+
+	<script type="text/javascript">
+		
+	var image_br = document.getElementById("donaderi_br");
+	var image_en = document.getElementById("donaderi_en");
+
+	
+	const urlParams = new URLSearchParams(window.location.search);
+	const myParam = urlParams.get('lang');
+
+	
+	if (myParam == "en"){
+		image_br.classList.add("none");
+		image_en.classList.remove("none");
+	}
+	else{
+		image_br.classList.remove("none");
+		image_en.classList.add("none");
+	}
+	
+	</script>

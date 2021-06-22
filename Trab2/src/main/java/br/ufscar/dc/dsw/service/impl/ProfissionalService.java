@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.ufscar.dc.dsw.dao.IProfissionalDAO;
 import br.ufscar.dc.dsw.domain.Profissional;
+import br.ufscar.dc.dsw.domain.Usuario;
 import br.ufscar.dc.dsw.service.spec.IProfissionalService;
 
 @Service
@@ -36,5 +37,10 @@ public class ProfissionalService implements IProfissionalService {
 	@Transactional(readOnly = true)
 	public boolean profissionalTemConsulta(Long id) {
 		return !dao.findById(id.longValue()).getConsultas().isEmpty(); 
+	}
+	
+	@Transactional(readOnly = false)
+	public void salvar(Profissional profissional) {
+		dao.save(profissional);
 	}
 }

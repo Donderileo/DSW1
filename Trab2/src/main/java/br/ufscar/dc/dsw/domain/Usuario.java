@@ -6,29 +6,31 @@ import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 @Entity
 @Table(name = "Usuario")
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Usuario extends AbstractEntity<Long> {
 	
-	@NotBlank
+	@NotBlank(message = "{NotBlank.usuario.email}")
 	@Column(nullable = false, length = 64)
     private String email;
     
-	@NotBlank
+	@NotBlank (message = "{NotBlank.usuario.password}")
     @Column(nullable = false, length = 64)
     private String password;
     
-    @NotBlank
+	@NotBlank (message = "{NotBlank.usuario.cpf}")
     @Column(nullable = false, length = 14)
     private String CPF;
     
-    @NotBlank
+	@NotBlank (message = "{NotBlank.usuario.name}")
     @Column(nullable = false, length = 60)
     private String name;
     
-    @NotBlank
+	
     @Column(nullable = false, length = 10)
     private String papel;
 	

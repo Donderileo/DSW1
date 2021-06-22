@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import br.ufscar.dc.dsw.dao.IClienteDAO;
 import br.ufscar.dc.dsw.domain.Cliente;
+import br.ufscar.dc.dsw.domain.Profissional;
 import br.ufscar.dc.dsw.service.spec.IClienteService;
 
 @Service
@@ -31,5 +32,10 @@ public class ClienteService implements IClienteService {
 	@Transactional(readOnly = true)
 	public boolean clienteTemConsulta(Long id) {
 		return !dao.findById(id.longValue()).getConsultas().isEmpty(); 
+	}
+	
+	@Transactional(readOnly = false)
+	public void salvar(Cliente cliente) {
+		dao.save(cliente);
 	}
 }
