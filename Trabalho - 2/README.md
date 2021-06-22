@@ -2,21 +2,12 @@
 
 O sistema de agendamento proposto, tem seus requisitos disponíveis em: 
 
-[Requisitos do Sistema](https://github.com/Donderileo/DSW1/blob/main/SistemaAgendamento/Requisitos-C1.pdf)
+----
 
+Para executar este projeto Spring, alguns passos devem ser executados.
 
 ----
 
-Para executar este projeto Maven, alguns passos devem ser executados.
-
-----
-
-
-## Tomcat 
-
-É necessário possuir o TomCat instalado e ativo, para isso deve-se seguir este roteiro: [https://github.com/delanobeder/DSW1/blob/master/Modulo02/Roteiro02-01.md](https://github.com/delanobeder/DSW1/blob/master/Modulo02/Roteiro02-01.md)
-
-----
 
 ## MySQL
 
@@ -28,9 +19,9 @@ mysql -uroot -p
 
 Com o servidor MySql ativo, é necessário alterar os valores de password e senha no arquivo GenericDao.java, situado em:
     
-    SistemaAgendamento/src/main/java/br/ufscar/dc/dsw/dao/ConsultaDAO.java
+    Trabalho-2/src/main/resources/templates/application.properties
 
-Atualizando a função getConnection com seu login e senha iguais aos usados no MySql.
+Atualizando as variáveis spring.datasource.username e spring.datasource.password com seu username e password iguais aos usados no MySql.
 
 ```java
 protected Connection getConnection() throws SQLException {
@@ -41,16 +32,17 @@ protected Connection getConnection() throws SQLException {
 }
 ```
 
-Com tudo configurado, precisamos inserir o Database e as Tabelas necessárias no banco de dados, para isso execute o arquivo `create.sql` no terminal mysql
+Com tudo configurado, precisamos inserir o Database no mySQL
 
-```bash
-source <PathAteOSistemaAgendamento>/SistemaAgendamento/src/db/create.sql
-```
-
-O script já criará alguns registros de cliente, um profissional, consultas e administrador.
+    create database SistemaAgendamento
 
 
-Acesse o site pelo link [localhost:8080/SistemaAgendamento](localhost:8080/SistemaAgendamento)
+Para executar o Spring, basta em um terminal executar:
+
+    mvn spring-boot:run
+
+
+Acesse o site pelo link [localhost:8080/](localhost:8080/)
 
 ----
 
@@ -60,12 +52,13 @@ Acesse o site pelo link [localhost:8080/SistemaAgendamento](localhost:8080/Siste
 | ------------- | ------------- |
 | R1: CRUD de Clientes | Implementado |
 | R2: CRUD de Profissional | Implementado |
-| R3: Listagem de Profissionais + ~~Filtro~~ | Parcialmente Implementado |
+| R3: Listagem de Profissionais| Implementado |
 | R4: Agendamento de Consultas + ~~Email~~ | Parcialmente Implementado |
 | R5: Validação de agendamentos | Implementado |
 | R6: Listagem de Consultas de um Cliente | Implementado |
 | R7: Listagem de Consultas de um Profissional| Implementado |
 | R8: Internacionalização em dois idiomas | Implementado |
+| R9: Validação de tamanho/formato | Implementado |
 
 
 Este projeto é um trabalho acadêmico da disciplina de Desenvolvimento de Software para Web ministrada pelo Prof. Dr. Delano Medeiros Beder.
