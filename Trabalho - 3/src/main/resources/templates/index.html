@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout}">
+<head>
+<link th:href="@{/css/style.css}" rel="stylesheet" />
+
+<title th:text="#{title.text}"></title>
+</head>
+
+<body>
+
+<section class="layout-content" layout:fragment="corpo">
+
+		<div class="container" style="text-align: center;">
+			<h1 th:text="#{title.label}">Donaderi Agendamentos</h1>
+			
+				<img alt="" th:src="@{/image/DonaderiAgendamentos_en.jpg}"  id="donaderi_en" class="donaderi none">
+				<img alt="" th:src="@{/image/DonaderiAgendamentos.jpg}"  id="donaderi_br" class="donaderi">
+
+			
+			
+		</div>
+
+	</section>
+
+</body>
+
+</html>
+
+	<script type="text/javascript">
+		
+	var image_br = document.getElementById("donaderi_br");
+	var image_en = document.getElementById("donaderi_en");
+
+	
+	const urlParams = new URLSearchParams(window.location.search);
+	const myParam = urlParams.get('lang');
+
+	
+	if (myParam == "en"){
+		image_br.classList.add("none");
+		image_en.classList.remove("none");
+	}
+	else{
+		image_br.classList.remove("none");
+		image_en.classList.add("none");
+	}
+	
+	</script>
