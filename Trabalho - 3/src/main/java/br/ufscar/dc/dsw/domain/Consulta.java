@@ -8,7 +8,7 @@ import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "Consulta")
 public class Consulta extends AbstractEntity<Long>{
