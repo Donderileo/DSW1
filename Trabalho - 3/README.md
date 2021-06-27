@@ -54,42 +54,41 @@ Acesse o site pelo link [localhost:8080/SistemaAgendamento](localhost:8080/Siste
 
 ----
 
-## Funcionalidades
+## Funcionalidades  
 
-CRUD para Clientes, Profissionais e Consultas
+CRUD para Clientes, Profissionais e Consultas  
 
-**C - CREATE**
-POST http://localhost:8080/clientes
-POST http://localhost:8080/profissionais
+**C - CREATE**  
+POST http://localhost:8080/clientes  
+POST http://localhost:8080/profissionais  
 
-**R - READ**
+**R - READ**  
 
-GET http://localhost:8080/clientes
-GET http://localhost:8080/clientes/{id}
+GET http://localhost:8080/clientes  
+GET http://localhost:8080/clientes/{id}  
 
-GET http://localhost:8080/profissionais
-GET http://localhost:8080/profissionais/{id}
+GET http://localhost:8080/profissionais  
+GET http://localhost:8080/profissionais/{id}  
 
-GET http://localhost:8080/consultas
-GET http://localhost:8080/consultas/{id}
-GET http://localhost:8080/consultas/clientes/{id}
-GET http://localhost:8080/consultas/profissionais/{id}
+GET http://localhost:8080/consultas  
+GET http://localhost:8080/consultas/{id}  
+GET http://localhost:8080/consultas/clientes/{id}  
+GET http://localhost:8080/consultas/profissionais/{id}  
 
-**U - UPDATE**
+**U - UPDATE**  
 
-PUT http://localhost:8080/clientes/{id}
-PUT http://localhost:8080/profissionais/{id}
+PUT http://localhost:8080/clientes/{id}  
+PUT http://localhost:8080/profissionais/{id}  
 
-**D - DELETE**
+**D - DELETE**  
 
-DELETE http://localhost:8080/clientes/{id}
-DELETE http://localhost:8080/profissionais/{id}
+DELETE http://localhost:8080/clientes/{id}  
+DELETE http://localhost:8080/profissionais/{id  
 
-**Obs.: **
-Para utilizar os metodos POST e PUT deve-se passar o  `"id"` na URL :
-Para utilizar os metodos POST e PUT deve-se passar um json com os campos:
-`"id", "email", "name", "password", "telefone", "sexo", "dataNasc", "cpf", "papel"`.
-
+**Obs.: **  
+Para utilizar os metodos POST e PUT deve-se passar o  `"id"` na URL :  
+Para utilizar os metodos POST e PUT deve-se passar um json com os campos:  
+`"id", "email", "name", "password", "telefone", "sexo", "dataNasc", "cpf", "papel"`
 
 ----
 
