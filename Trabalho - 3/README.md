@@ -54,18 +54,53 @@ Acesse o site pelo link [localhost:8080/SistemaAgendamento](localhost:8080/Siste
 
 ----
 
+## Funcionalidades
+
+CRUD para Clientes, Profissionais e Consultas
+
+**C - CREATE**
+POST http://localhost:8080/clientes
+POST http://localhost:8080/profissionais
+
+**R - READ**
+
+GET http://localhost:8080/clientes
+GET http://localhost:8080/clientes/{id}
+
+GET http://localhost:8080/profissionais
+GET http://localhost:8080/profissionais/{id}
+
+GET http://localhost:8080/consultas
+GET http://localhost:8080/consultas/{id}
+GET http://localhost:8080/consultas/clientes/{id}
+GET http://localhost:8080/consultas/profissionais/{id}
+
+**U - UPDATE**
+
+PUT http://localhost:8080/clientes/{id}
+PUT http://localhost:8080/profissionais/{id}
+
+**D - DELETE**
+
+DELETE http://localhost:8080/clientes/{id}
+DELETE http://localhost:8080/profissionais/{id}
+
+**Obs.: **
+Para utilizar os metodos POST e PUT deve-se passar o  `"id"` na URL :
+Para utilizar os metodos POST e PUT deve-se passar um json com os campos:
+`"id", "email", "name", "password", "telefone", "sexo", "dataNasc", "cpf", "papel"`.
+
+
+----
+
 ## Checklist 
+Obs.: Além do que foi implementado no Trabalho 2, nesta etapa também fora implementado: 
 
 | Requisitos | Status |
 | ------------- | ------------- |
-| R1: CRUD de Clientes | Implementado |
-| R2: CRUD de Profissional | Implementado |
-| R3: Listagem de Profissionais + ~~Filtro~~ | Parcialmente Implementado |
-| R4: Agendamento de Consultas + ~~Email~~ | Parcialmente Implementado |
-| R5: Validação de agendamentos | Implementado |
-| R6: Listagem de Consultas de um Cliente | Implementado |
-| R7: Listagem de Consultas de um Profissional| Implementado |
-| R8: Internacionalização em dois idiomas | Implementado |
+| R1: CRUD de Clientes REST | Implementado |
+| R2: CRUD de Profissional REST | Implementado |
+| R2: CRUD de Consultas REST | Implementado |
 
 
 Este projeto é um trabalho acadêmico da disciplina de Desenvolvimento de Software para Web ministrada pelo Prof. Dr. Delano Medeiros Beder.
@@ -74,5 +109,4 @@ O projeto foi desenvolvido inteiramente pelos dois membros em conjunto.
 
 * [Leonardo Donderi Rodrigues](https://github.com/Donderileo) 
 * [Vitor Donadelli Rodrigues](https://github.com/VitorDonadelli)
-
 

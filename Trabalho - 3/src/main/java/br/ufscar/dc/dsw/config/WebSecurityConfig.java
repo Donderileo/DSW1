@@ -40,25 +40,23 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeRequests()
-
-			.antMatchers("/clientes", "/profissionais", "/consultas").permitAll()
-			.antMatchers("/clientes/{\\d+}", "/profissionais/{\\d+}").permitAll()
-			.antMatchers("/consultas/{\\d+}").permitAll()
-			.antMatchers("/profissionais/especialidades/{\\w+}").permitAll()
-			.antMatchers("/consultas/clientes/{\\d+}").permitAll()
-			.antMatchers("/consultas/profissionais/{\\d+}").permitAll()
-		
-	   		.antMatchers("/", "/index", "/error","/profissionais/listar").permitAll()
-	   		.antMatchers("/login/**", "/js/**", "/css/**","/image/**", "/webjars/**").permitAll()
-			.antMatchers("/clientes/listar","/clientes/cadastrar","/profissionais/cadastrar").hasAuthority("Adm")
-	   	.and()
-	   		.formLogin()
-	   			.loginPage("/login")
-	   			.permitAll()
-	   			.and()
-	   		.logout()
-		   		.logoutSuccessUrl("/")
-		   		.permitAll();
+	http.csrf().disable().authorizeRequests()
+	// Controladores REST
+		.antMatchers("/clientes", "/profissionais", "/consultas").permitAll()
+		.antMatchers("/clientes/{\\d+}", "/profissionais/{\\d+}").permitAll()
+		.antMatchers("/consultas/{\\d+}").permitAll()
+		.antMatchers("/profissionais/especialidades/{\\w+}").permitAll()
+		.antMatchers("/consultas/clientes/{\\d+}").permitAll()
+		.antMatchers("/consultas/profissionais/{\\d+}").permitAll()
+	// Demais linhas
+		.antMatchers("/", "/index", "/error","/profissionais/listar").permitAll()
+		.antMatchers("/login/**", "/js/**", "/css/**","/image/**", "/webjars/**").permitAll()
+		.antMatchers("/clientes/listar","/clientes/cadastrar","/profissionais/cadastrar").hasAuthority("Adm")
+		.anyRequest().authenticated()
+		.and()
+		.formLogin().loginPage("/login").permitAll()
+		.and()
+		.logout().logoutSuccessUrl("/").permitAll();
 	}
+	
 }
