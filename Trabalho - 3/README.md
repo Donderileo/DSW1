@@ -12,12 +12,6 @@ Para executar este projeto Maven, alguns passos devem ser executados.
 ----
 
 
-## Tomcat 
-
-É necessário possuir o TomCat instalado e ativo, para isso deve-se seguir este roteiro: [https://github.com/delanobeder/DSW1/blob/master/Modulo02/Roteiro02-01.md](https://github.com/delanobeder/DSW1/blob/master/Modulo02/Roteiro02-01.md)
-
-----
-
 ## MySQL
 
 Também, precisamos de um servidor MySql ativo, que pode ser executado com
@@ -26,31 +20,24 @@ Também, precisamos de um servidor MySql ativo, que pode ser executado com
 mysql -uroot -p
 ```
 
-Com o servidor MySql ativo, é necessário alterar os valores de password e senha no arquivo GenericDao.java, situado em:
+Com o servidor MySql ativo, é necessário alterar os valores de password e senha no arquivo application.properties, situado em:
     
-    SistemaAgendamento/src/main/java/br/ufscar/dc/dsw/dao/ConsultaDAO.java
+   Trabalho-2/src/main/resources/templates/application.properties
 
-Atualizando a função getConnection com seu login e senha iguais aos usados no MySql.
+Atualizando as variáveis spring.datasource.username e spring.datasource.password com seu username e password iguais aos usados no MySql.
 
-```java
-protected Connection getConnection() throws SQLException {
-    
-    String url = "jdbc:mysql://localhost:3306/SistemaAgendamento";
-    
-    return DriverManager.getConnection(url, "root", "password");
-}
-```
-
-Com tudo configurado, precisamos inserir o Database e as Tabelas necessárias no banco de dados, para isso execute o arquivo `create.sql` no terminal mysql
+Com tudo configurado, precisamos inserir o Database no mySQL
 
 ```bash
-source <PathAteOSistemaAgendamento>/SistemaAgendamento/src/db/create.sql
+create database SistemaAgendamento
 ```
 
-O script já criará alguns registros de cliente, um profissional, consultas e administrador.
+Para executar o Spring, basta em um terminal executar:
+```bash
+mvn spring-boot:run
+```
 
-
-Acesse o site pelo link [localhost:8080/SistemaAgendamento](localhost:8080/SistemaAgendamento)
+Acesse o site pelo link [localhost:8080/](localhost:8080/)
 
 ----
 
