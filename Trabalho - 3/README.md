@@ -85,11 +85,6 @@ PUT http://localhost:8080/profissionais/{id}
 DELETE http://localhost:8080/clientes/{id}  
 DELETE http://localhost:8080/profissionais/{id  
 
-**Obs.: **  
-Para utilizar os metodos POST e PUT deve-se passar o  `"id"` na URL :  
-Para utilizar os metodos POST e PUT deve-se passar um json com os campos:  
-`"id", "email", "name", "password", "telefone", "sexo", "dataNasc", "cpf", "papel"`
-
 ----
 
 ## Checklist 
@@ -99,7 +94,7 @@ Obs.: Além do que foi implementado no Trabalho 2, nesta etapa também fora impl
 | ------------- | ------------- |
 | R1: CRUD de Clientes REST | Implementado |
 | R2: CRUD de Profissional REST | Implementado |
-| R2: CRUD de Consultas REST | Implementado |
+| R2: GET de Consultas REST | Implementado |
 
 
 Este projeto é um trabalho acadêmico da disciplina de Desenvolvimento de Software para Web ministrada pelo Prof. Dr. Delano Medeiros Beder.
