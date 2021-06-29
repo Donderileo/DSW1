@@ -17,7 +17,7 @@ Também, precisamos de um servidor MySql ativo, que pode ser executado com
 mysql -uroot -p
 ```
 
-Com o servidor MySql ativo, é necessário alterar os valores de password e senha no arquivo GenericDao.java, situado em:
+Com o servidor MySql ativo, é necessário alterar os valores de password e senha no arquivo application.properties, situado em:
     
     Trabalho-2/src/main/resources/templates/application.properties
 
